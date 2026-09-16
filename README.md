@@ -58,4 +58,3 @@ Settings > reCAPTCHA settings:
 Settings > Email Notifications:
 - 通知先メールアドレスを設定
 - 確認メールのリンクをクリック（重要。クリックしないと送信通知が届きません）
-
