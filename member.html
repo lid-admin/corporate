@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja" data-root="./">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.dataset.js = '1';</script>
+  <title>メンバー | Local Impact Design飯南株式会社</title>
+  <meta name="description" content="飯南町で活動するLocal Impact Design飯南の地域おこし協力隊メンバーをご紹介します。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lid-iinan.com/member.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="メンバー | Local Impact Design飯南株式会社">
+  <meta property="og:description" content="飯南町で活動するLocal Impact Design飯南の地域おこし協力隊メンバーをご紹介します。">
+  <meta property="og:url" content="https://lid-iinan.com/member.html">
+  <meta property="og:image" content="https://lid-iinan.com/images/hero.jpg">
+  <meta property="og:site_name" content="Local Impact Design飯南株式会社">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="メンバー | Local Impact Design飯南株式会社">
+  <meta name="twitter:description" content="飯南町で活動するLocal Impact Design飯南の地域おこし協力隊メンバーをご紹介します。">
+  <meta name="twitter:image" content="https://lid-iinan.com/images/hero.jpg">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBZH8WSNZX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-NBZH8WSNZX');
+  </script>
+  <script defer src="assets/site.js"></script>
+
+  <style>
+    /* ─── メンバーページ固有 ─── */
+    .member-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .member-head {
+      display: flex;
+      align-items: center;
+      gap: var(--s-4);
+      margin-bottom: var(--s-4);
+    }
+
+    /* 写真が未設定のときのイニシャル表示。
+       写真ありと同じ寸法（1:1）を保ち、data に image を足すだけで切り替わる */
+    .avatar,
+    .avatar-initial {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .avatar-initial {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--moss-soft);
+      color: var(--moss);
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .member-kana {
+      font-size: var(--t-xs);
+      color: var(--ink-subtle);
+      margin: 0 0 2px;
+    }
+
+    .member-name {
+      font-family: var(--font-display);
+      font-size: var(--t-lg);
+      font-weight: 700;
+      margin: 0 0 4px;
+    }
+
+    .member-from {
+      font-size: var(--t-xs);
+      color: var(--ink-muted);
+      margin: 0;
+    }
+
+    .member-bio {
+      font-size: 14px;
+      line-height: 1.95;
+      color: var(--ink-muted);
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .member-report-link {
+      display: inline-block;
+      margin-top: var(--s-4);
+      font-size: var(--t-sm);
+      font-weight: 700;
+      color: var(--moss);
+      text-decoration: none;
+    }
+
+    .member-report-link:hover {
+      color: var(--moss-dark);
+      text-decoration: underline;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="./">
+      <img class="logo-mark" src="images/logo-mark.png" alt="" width="32" height="36">
+      <span>Local Impact Design 飯南</span>
+    </a>
+    <nav id="site-nav">
+      <a href="about.html">企業情報</a>
+      <a href="service.html">サービス</a>
+      <a href="member.html" aria-current="page">メンバー</a>
+      <a href="reports.html">活動レポート</a>
+      <a href="recruit.html">募集情報</a>
+      <a class="nav-external" href="https://farm.lid-iinan.com/" target="_blank" rel="noopener noreferrer">
+        FARM
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 4h6v6M20 4L10 14M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" />
+        </svg>
+        <span class="visually-hidden">（別サイトが新しいタブで開きます）</span>
+      </a>
+      <a class="nav-cta" href="contact.html">お問い合わせ</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false"
+      aria-label="メニューを開く">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
+    </button>
+  </header>
+
+  <div class="page-hero">
+    <p class="section-label">MEMBER</p>
+    <h1>メンバー</h1>
+    <p class="lead">飯南町で活動している地域おこし協力隊のメンバーです。</p>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div id="member-list" class="card-grid cols-3">
+        <p class="is-loading">読み込み中...</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="contact-cta">
+        <div>
+          <h2>一緒に活動する仲間を募集しています</h2>
+          <p>飯南町での働き方に関心をお持ちの方は、募集情報をご覧ください。</p>
+          <p style="margin-top:12px;">
+            <a class="contact-tel-link" href="tel:0854623122">0854-62-3122</a><br>
+            <small style="color:var(--ink-subtle);">平日 9:00〜17:00</small>
+          </p>
+        </div>
+        <div class="btn-row">
+          <a class="btn-primary" href="contact.html">お問い合わせ</a>
+          <a class="btn-outline" href="recruit.html">募集情報を見る</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // assets/site.js（defer）の実行後に走らせるため DOMContentLoaded を待つ
+    document.addEventListener('DOMContentLoaded', () => {
+    (async function () {
+      const list = document.getElementById('member-list');
+      try {
+        const [members, reports] = await Promise.all([
+          LID.fetchJSON('data/members.json'),
+          LID.fetchJSON('data/reports.json').catch(() => [])
+        ]);
+        if (!Array.isArray(members)) throw new Error('members.json が配列ではありません');
+
+        const sorted = members
+          .filter(m => m && m.id && m.name)
+          .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+        list.innerHTML = sorted.map(m => {
+          // 執筆件数。matchKeys で表記ゆれ（氏名／姓のみ）を吸収する
+          const count = Array.isArray(reports)
+            ? reports.filter(r => LID.matchAuthor(r, m.matchKeys || [])).length
+            : 0;
+
+          const avatar = m.image
+            ? `<img class="avatar" src="${LID.escapeHtml(m.image)}" alt="${LID.escapeHtml(m.name)}" loading="lazy"
+                 onerror="this.onerror=null;this.src='images/placeholder.svg'">`
+            : `<span class="avatar-initial" aria-hidden="true">${LID.escapeHtml(m.name.charAt(0))}</span>`;
+
+          // 0件のメンバーは導線を出さない
+          const link = count > 0
+            ? `<a class="member-report-link"
+                 href="reports.html?member=${encodeURIComponent(m.id)}">${LID.escapeHtml(m.name)} の活動レポート（${count}件）→</a>`
+            : '';
+
+          return `<div class="card member-card">
+            <div class="member-head">
+              ${avatar}
+              <div>
+                <p class="member-kana">${LID.escapeHtml(m.kana || '')}</p>
+                <p class="member-name">${LID.escapeHtml(m.name)}</p>
+                <p class="member-from">出身地：${LID.escapeHtml(m.from || '')}</p>
+              </div>
+            </div>
+            <p class="member-bio">${LID.escapeHtml(m.bio || '')}</p>
+            ${link}
+          </div>`;
+        }).join('');
+      } catch (err) {
+        console.error(err);
+        LID.renderNotice(list, 'メンバー情報を読み込めませんでした。時間をおいて再度お試しください。', true);
+      }
+    })();
+    });
+  </script>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>
+        <p class="footer-name">Local Impact Design 飯南株式会社</p>
+        <address>
+          〒690-3513 島根県飯石郡飯南町下赤名830番地<br>
+          TEL <a href="tel:0854623122">0854-62-3122</a>（平日 9:00〜17:00）
+        </address>
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li><a href="about.html">企業情報</a></li>
+          <li><a href="service.html">サービス</a></li>
+          <li><a href="member.html">メンバー</a></li>
+        </ul>
+        <ul>
+          <li><a href="reports.html">活動レポート</a></li>
+          <li><a href="recruit.html">募集情報</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+          <li><a href="policy.html">プライバシーポリシー</a></li>
+          <li><a href="terms.html">利用規約</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 Local Impact Design飯南株式会社 All right reserved.</p>
+  </footer>
+
+</body>
+
+</html>

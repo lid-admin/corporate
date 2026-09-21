@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="画像を準備中です">
+  <rect width="1200" height="800" fill="#E8EEDA"/>
+  <g fill="none" stroke="#55682F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.55">
+    <path d="M140 560 L360 360 L520 500 L700 320 L1060 560"/>
+    <path d="M600 250 v-70"/>
+    <path d="M600 200 c0-42 28-84 84-84 0 56-42 84-84 84z"/>
+    <path d="M600 250 c0-42-28-70-70-70 0 42 28 70 70 70z"/>
+  </g>
+  <circle cx="900" cy="210" r="56" fill="#55682F" opacity="0.35"/>
+  <text x="600" y="672" font-family="'Zen Maru Gothic','Noto Sans JP',sans-serif" font-size="46" font-weight="700" fill="#55682F" text-anchor="middle">No Image</text>
+</svg>

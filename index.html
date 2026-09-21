@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-root="./">
 
 <head>
   <meta charset="UTF-8">
@@ -9,1922 +9,674 @@
   <meta name="description" content="島根県飯石郡飯南町でLocal Impact Design飯南株式会社が受け入れる地域おこし協力隊の活動記録。農業・観光・教育×IT分野での取り組みや募集情報をお届けします。">
   <meta name="keywords" content="地域おこし協力隊,飯南町,島根県,Local Impact Design,農業,観光,教育,IT,移住,スマート農業">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://report.lid-iinan.com/">
+  <link rel="canonical" href="https://lid-iinan.com/">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="飯南町 地域おこし協力隊 活動報告 | Local Impact Design飯南">
   <meta property="og:description" content="島根県飯石郡飯南町でLocal Impact Design飯南株式会社が受け入れる地域おこし協力隊の活動記録。農業・観光・教育×IT分野での取り組みや募集情報をお届けします。">
-  <meta property="og:url" content="https://report.lid-iinan.com/">
-  <meta property="og:image" content="https://report.lid-iinan.com/images/hero.jpg">
-  <meta property="og:site_name" content="飯南町 地域おこし協力隊 | Local Impact Design飯南">
+  <meta property="og:url" content="https://lid-iinan.com/">
+  <meta property="og:image" content="https://lid-iinan.com/images/hero.jpg">
+  <meta property="og:site_name" content="Local Impact Design飯南株式会社">
   <meta property="og:locale" content="ja_JP">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="飯南町 地域おこし協力隊 活動報告 | Local Impact Design飯南">
-  <meta name="twitter:description" content="島根県飯石郡飯南町でLocal Impact Design飯南株式会社が受け入れる地域おこし協力隊の活動記録。農業・観光・教育×IT分野での取り組みや募集情報をお届けします。">
-  <meta name="twitter:image" content="https://report.lid-iinan.com/images/hero.jpg">
-  <link rel="icon" href="images/favicon.ico">
+  <meta name="twitter:description" content="島根県飯石郡飯南町でLocal Impact Design飯南株式会社が受け入れる地域おこし協力隊の活動記録。">
+  <meta name="twitter:image" content="https://lid-iinan.com/images/hero.jpg">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBZH8WSNZX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-NBZH8WSNZX');
   </script>
+  <script defer src="assets/site.js"></script>
+
   <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* ─── トップページ固有 ─── */
 
-    :root {
-      --ink: #0f1a0d;
-      --green: #1a5c1e;
-      --lime: #5a9e3a;
-      --accent: #8dc63f;
-      --sand: #f7f5f0;
-      --muted: #6b7c69;
-      --border: rgba(0, 0, 0, 0.08);
-      --white: #ffffff;
-      --radius: 14px;
-      /* ─── RESPONSIVE TOKENS ─── */
-      --pad-x: 60px;
-      --header-pad-x: 40px;
-      --header-h: 64px;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    #news,
-    #reports,
-    #about,
-    #recruit,
-    #contact {
-      scroll-margin-top: var(--header-h);
-    }
-
-    body {
-      font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', sans-serif;
-      color: var(--ink);
-      background: var(--white);
-      font-size: 15px;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* ─── HEADER ─── */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 var(--header-pad-x);
-      min-height: var(--header-h);
-      gap: 8px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.7);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .site-header .logo {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--green);
-    }
-
-    .site-header nav {
-      display: flex;
-      gap: 32px;
-    }
-
-    .site-header nav a {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-      transition: color 0.2s;
-    }
-
-    .site-header nav a:hover {
-      color: var(--green);
-    }
-
-    /* ─── HAMBURGER ─── */
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: 0;
-      padding: 0;
-      cursor: pointer;
-      flex-direction: column;
-      gap: 4px;
-      flex-shrink: 0;
-    }
-
-    .nav-toggle span {
-      display: block;
-      width: 18px;
-      height: 2px;
-      background: var(--green);
-      transition: transform 0.2s, opacity 0.2s;
-    }
-
-    .site-header.is-open .nav-toggle span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .site-header.is-open .nav-toggle span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .site-header.is-open .nav-toggle span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-
-    /* ─── HERO ─── */
+    /* ヒーロー */
     .hero {
-      position: relative;
-      height: 100svh;
-      min-height: 560px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 80px var(--pad-x);
+      padding: var(--s-7) var(--pad-x) var(--s-8);
+      background: var(--surface);
+    }
+
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      border-radius: var(--r-hero);
       overflow: hidden;
+      background: var(--moss);
+      display: flex;
+      align-items: stretch;
+      /* 高さは本文側だけで決める。写真は絶対配置にして計算に関与させない
+         （height:100% は親の高さが未確定だと auto になり、縦長写真で伸びてしまう） */
+      min-height: 460px;
     }
 
-    .hero img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top,
-          rgba(10, 24, 10, 0.82) 0%,
-          rgba(10, 24, 10, 0.3) 15%,
-          transparent 100%);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 760px;
+    .hero-copy {
+      padding: var(--s-8) var(--s-7);
+      flex: 1 1 0;
+      min-width: 0;
     }
 
     .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 28px;
-      height: 1px;
-      background: var(--accent);
+      font-size: var(--t-sm);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #DCE6C4;
+      margin: 0 0 var(--s-5);
     }
 
     .hero h1 {
-      font-size: clamp(38px, 6vw, 72px);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
+      font-size: var(--t-hero);
+      line-height: 1.42;
+      color: var(--surface);
+      margin: 0 0 var(--s-5);
     }
 
-    .hero h1 em {
-      font-style: normal;
-      color: var(--accent);
+    .hero-lead {
+      color: #EDF2DF;
+      margin: 0 0 var(--s-7);
     }
 
-    .hero-desc {
-      font-size: 15px;
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 480px;
-      line-height: 1.8;
+    .hero-inner .btn-outline {
+      border-color: #A9BE85;
+      color: var(--surface);
     }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 36px;
-      right: 48px;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      color: rgba(255, 255, 255, 0.45);
+    .hero-inner .btn-outline:hover {
+      border-color: var(--surface);
+      color: var(--surface);
     }
 
-    .hero-scroll::after {
-      content: '';
-      display: block;
-      width: 1px;
-      height: 48px;
-      background: rgba(255, 255, 255, 0.3);
-      animation: scrollLine 1.8s ease-in-out infinite;
-    }
-
-    @keyframes scrollLine {
-      0% {
-        transform: scaleY(0);
-        transform-origin: top;
-      }
-
-      50% {
-        transform: scaleY(1);
-        transform-origin: top;
-      }
-
-      51% {
-        transform: scaleY(1);
-        transform-origin: bottom;
-      }
-
-      100% {
-        transform: scaleY(0);
-        transform-origin: bottom;
-      }
-    }
-
-    /* ─── SECTION BASE ─── */
-    .section {
-      padding: 100px var(--pad-x);
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--lime);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .section-label::after {
-      content: '';
-      display: block;
-      flex: 1;
-      max-width: 40px;
-      height: 1px;
-      background: var(--lime);
-    }
-
-    .section-title {
-      font-size: clamp(26px, 3.5vw, 40px);
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      line-height: 1.25;
-      margin-bottom: 48px;
-    }
-
-    /* ─── BENTO GRID ─── */
-    .bento {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
-      min-height: 200px;
-    }
-
-    .bento-card {
-      background: var(--sand);
-      border-radius: var(--radius);
-      overflow: hidden;
+    .hero-photo-wrap {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.25s cubic-bezier(.25, .46, .45, .94), box-shadow 0.25s;
-    }
-
-    .bento-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .bento-card.featured {
-      grid-column: span 7;
-    }
-
-    .bento-card.side {
-      grid-column: span 5;
-    }
-
-    .bento-card img {
-      width: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .bento-card.featured img {
-      height: 280px;
-    }
-
-    .bento-card.side img {
-      height: 160px;
-    }
-
-    .card-body {
-      padding: 22px 24px 26px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .card-date {
-      font-size: 11px;
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .card-tag {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      background: rgba(90, 158, 58, 0.12);
-      color: var(--lime);
-      padding: 3px 10px;
-      border-radius: 20px;
-    }
-
-    .card-body h3 {
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 1.5;
-      margin-bottom: 8px;
-    }
-
-    .bento-card.featured .card-body h3 {
-      font-size: 20px;
-    }
-
-    .card-body p {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.7;
-      flex: 1;
-    }
-
-    .card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--lime);
-      margin-top: 16px;
-      letter-spacing: 0.04em;
-      transition: gap 0.2s;
-    }
-
-    .card-link:hover {
-      gap: 10px;
-    }
-
-    .card-link::after {
-      content: '→';
-    }
-
-    .bento-loading {
-      grid-column: span 12;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 0;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    /* 記事が増えても初期表示を一定件数に保ち、ボタンで追記読み込みする */
-    .bento-more {
-      display: flex;
-      justify-content: center;
-      margin-top: 32px;
-    }
-
-    .bento-more[hidden] {
-      display: none;
-    }
-
-    .btn-more {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      border: 1.5px solid var(--green);
-      color: var(--green);
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      padding: 12px 28px;
-      border-radius: 40px;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .btn-more:hover {
-      background: var(--green);
-      color: #fff;
-    }
-
-    .btn-more::after {
-      content: '\2193';
-    }
-
-    /* ─── DARK BAND ─── */
-    .band {
-      background: var(--ink);
-      color: #fff;
-      padding: 80px var(--pad-x);
-    }
-
-    .band-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .band .section-label {
-      color: var(--accent);
-    }
-
-    .band .section-label::after {
-      background: var(--accent);
-    }
-
-    .band .section-title {
-      color: #fff;
-      margin-bottom: 0;
-    }
-
-    .band-right {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .band-item {
-      border-left: 2px solid rgba(255, 255, 255, 0.12);
-      padding-left: 20px;
-    }
-
-    .band-item h4 {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-    }
-
-    .band-item p {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.6);
-      line-height: 1.65;
-    }
-
-    /* ─── RECRUIT ─── */
-    .recruit-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .recruit-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px 32px;
-      position: relative;
+      width: 46%;
+      flex-shrink: 0;
+      background: var(--moss-dark);
       overflow: hidden;
-      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    .recruit-card:hover {
-      border-color: var(--lime);
-      box-shadow: 0 0 0 4px rgba(90, 158, 58, 0.08);
-    }
-
-    .recruit-card::before {
-      content: '';
+    /* 絶対配置で枠を埋める。写真の縦横比に関わらずヒーローの高さは変わらない */
+    .hero-photo {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--green), var(--accent));
-    }
-
-    .recruit-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .recruit-card dl {
-      font-size: 13px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .recruit-card .dl-row {
-      display: grid;
-      grid-template-columns: 6.8em 1fr;
-      gap: 8px;
-    }
-
-    .recruit-card dt {
-      font-weight: 700;
-      color: var(--muted);
-      font-size: 12px;
-      padding-top: 1px;
-    }
-
-    .recruit-card dd {
-      line-height: 1.65;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 28px;
-      background: var(--green);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      padding: 13px 26px;
-      border-radius: 40px;
-      transition: background 0.2s, transform 0.2s;
-    }
-
-    .btn-primary:hover {
-      background: var(--lime);
-      transform: translateY(-1px);
-    }
-
-    .btn-primary::after {
-      content: '→';
-    }
-
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 28px;
-      border: 1.5px solid var(--green);
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      padding: 12px 26px;
-      border-radius: 40px;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .btn-outline:hover {
-      background: var(--green);
-      color: #fff;
-    }
-
-    .btn-outline::after {
-      content: '→';
-    }
-
-    /* ─── CONTACT ─── */
-    .contact-wrap {
-      background: var(--sand);
-      border-radius: 20px;
-      padding: 56px 52px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .contact-wrap h3 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .contact-wrap .sub {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .contact-tel {
-      font-size: clamp(17px, 5.2vw, 28px);
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      color: var(--green);
-    }
-
-    .contact-tel-link {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      color: inherit;
-      white-space: nowrap;
-    }
-
-    .contact-tel small {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--muted);
+      inset: 0;
       display: block;
-      margin-top: 2px;
-    }
-
-    .contact-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-width: 200px;
-    }
-
-    .contact-extra {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-
-    .company-info .dl-row {
-      display: grid;
-      grid-template-columns: 6.8em 1fr;
-      gap: 8px;
-    }
-
-    .company-info dt {
-      font-weight: 700;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .company-info dd {
-      line-height: 1.65;
-    }
-
-    .map-embed {
-      border-radius: 20px;
-      overflow: hidden;
-      aspect-ratio: 4 / 3;
-    }
-
-    .map-embed iframe {
       width: 100%;
       height: 100%;
-      border: 0;
-      display: block;
+      max-width: none;
+      object-fit: cover;
     }
 
-    /* ─── CONTACT MODAL ─── */
-    .contact-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      background: rgba(15, 26, 13, 0.72);
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      opacity: 0;
-      transition: opacity 0.28s ease;
-    }
-
-    .contact-modal.is-open {
-      display: flex;
-    }
-
-    .contact-modal.is-visible {
-      opacity: 1;
-    }
-
-    .contact-modal-frame {
-      position: relative;
-      width: min(92vw, 600px);
-      max-height: 88vh;
-      overflow-y: auto;
-      background: var(--white);
-      border-radius: 24px;
-      padding: 48px;
-      box-shadow: 0 32px 80px rgba(15, 26, 13, 0.35);
-      opacity: 0;
-      transition: opacity 0.28s ease;
-    }
-
-    .contact-modal-frame::before {
-      content: '';
+    /* どのレポートの写真かを示し、その記事への入口にする */
+    .hero-credit {
       position: absolute;
-      top: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      border-radius: 24px 24px 0 0;
-      background: linear-gradient(90deg, var(--green), var(--accent));
+      bottom: 0;
+      padding: var(--s-5) var(--s-4) var(--s-3);
+      background: linear-gradient(to top, rgba(27, 26, 23, 0.72), rgba(27, 26, 23, 0));
+      color: var(--surface);
+      font-size: var(--t-xs);
+      line-height: 1.7;
+      text-decoration: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-    .contact-modal.is-visible .contact-modal-frame {
+    .hero-credit.is-visible {
       opacity: 1;
     }
 
-    .contact-modal-eyebrow {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--lime);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .contact-modal-frame h3 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .contact-modal-frame .sub {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 28px;
-    }
-
-    .contact-modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      font-size: 20px;
-      line-height: 1;
-      color: var(--muted);
-      cursor: pointer;
-      background: var(--sand);
-      border: none;
-      transition: background 0.2s, color 0.2s, transform 0.15s;
-    }
-
-    .contact-modal-close:hover {
-      background: var(--green);
-      color: #fff;
-      transform: scale(1.06);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .contact-modal,
-      .contact-modal-frame,
-      .contact-modal-close {
-        transition: none;
-      }
-    }
-
-    .contact-form .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .contact-form .field {
-      margin-bottom: 18px;
-    }
-
-    .contact-form label {
-      display: block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: var(--muted);
-      margin-bottom: 7px;
-    }
-
-    .contact-form label .req {
-      color: var(--green);
-      margin-left: 2px;
-    }
-
-    .contact-form input,
-    .contact-form select,
-    .contact-form textarea {
-      width: 100%;
-      background: var(--sand);
-      border: 1.5px solid transparent;
-      border-radius: var(--radius);
-      padding: 12px 16px;
-      font: inherit;
-      font-size: 14px;
-      color: var(--ink);
-      min-height: 46px;
-      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-    }
-
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder {
-      color: rgba(15, 26, 13, 0.32);
-    }
-
-    .contact-form input:focus,
-    .contact-form select:focus,
-    .contact-form textarea:focus {
-      outline: none;
-      background: #fff;
-      border-color: var(--lime);
-      box-shadow: 0 0 0 4px rgba(90, 158, 58, 0.14);
-    }
-
-    .contact-form textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-
-    .contact-form .field-consent {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      background: var(--sand);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      margin-bottom: 24px;
-    }
-
-    .contact-form .field-consent input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      min-height: 0;
-      margin-top: 1px;
-      accent-color: var(--green);
-      flex-shrink: 0;
-    }
-
-    .contact-form .field-consent label {
-      font-size: 12.5px;
-      font-weight: 400;
-      color: var(--muted);
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .contact-form .field-consent label a {
-      color: var(--green);
+    .hero-credit:hover {
+      color: var(--surface);
       text-decoration: underline;
     }
 
-    .contact-form #contact-recaptcha {
-      margin: 4px 0 24px;
-      transform: scale(0.95);
-      transform-origin: left;
+    @media (max-width: 899px) {
+      .hero-inner {
+        flex-direction: column-reverse;
+      }
+
+      .hero-inner {
+        min-height: 0;
+      }
+
+      .hero-photo-wrap {
+        width: 100%;
+        height: 260px;
+        flex-shrink: 0;
+      }
+
+      .hero-copy {
+        padding: var(--s-6) var(--s-5) var(--s-7);
+      }
     }
 
-    .contact-form button[type="submit"] {
-      width: 100%;
+    /* 事業紹介の要約 */
+    .service-brief {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--s-5);
+    }
+
+    .service-brief-item {
+      background: var(--surface);
+      border-radius: var(--r-card);
+      padding: var(--s-6) var(--s-5);
+      box-shadow: var(--shadow-card);
+    }
+
+    .service-brief-item .icon {
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      margin-top: 4px;
+      width: 52px;
+      height: 52px;
+      border-radius: var(--r-icon);
+      background: var(--moss-soft);
+      margin-bottom: var(--s-5);
     }
 
-    .contact-form-success,
-    .contact-form-error {
-      display: none;
-      padding: 18px 20px;
-      border-radius: var(--radius);
+    .service-brief-item.kaki .icon {
+      background: var(--kaki-soft);
+    }
+
+    .service-brief-item h3 {
+      font-size: var(--t-lg);
+      margin: 0 0 var(--s-3);
+    }
+
+    .service-brief-item p {
       font-size: 14px;
-      line-height: 1.7;
-      border-left: 4px solid transparent;
+      line-height: 1.95;
+      color: var(--ink-muted);
+      margin: 0;
     }
 
-    .contact-form-success {
-      background: var(--sand);
-      border-left-color: var(--green);
-      color: var(--ink);
-    }
-
-    .contact-form-error {
-      background: #fdecea;
-      border-left-color: #b3261e;
-      color: #b3261e;
-    }
-
-    .contact-form-success.is-visible,
-    .contact-form-error.is-visible {
-      display: block;
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--ink);
-      color: rgba(255, 255, 255, 0.5);
-      padding: 56px var(--pad-x) 40px;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 40px;
-      flex-wrap: wrap;
-      padding-bottom: 36px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 28px;
-    }
-
-    .footer-brand .name {
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-
-    .footer-brand .addr {
-      font-size: 12px;
-      line-height: 1.7;
-    }
-
-    .footer-sns {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: flex-end;
-    }
-
-    .footer-sns a {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.5);
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
-    }
-
-    .footer-sns a:hover {
-      color: #fff;
-    }
-
-    .footer-copy-row {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .footer-copy {
-      font-size: 11px;
-    }
-
-    .footer-legal a {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.5);
-      transition: color 0.2s;
-    }
-
-    .footer-legal a:hover {
-      color: #fff;
-    }
-
-    /* ─── NEWS ─── */
-    .news-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      border-top: 1px solid var(--border);
-      /* 件数が増えてもページが間延びしないよう、リスト内でスクロールさせる */
-      max-height: 360px;
-      overflow-y: auto;
-      overscroll-behavior: contain;
-      padding-right: 10px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-
-    .news-list::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .news-list::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .news-list::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 3px;
-    }
-
-    .news-item {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--border);
-      transition: opacity 0.2s;
-    }
-
-    .news-item:hover {
-      opacity: 0.7;
-    }
-
-    .news-item a {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      width: 100%;
-      color: inherit;
-    }
-
-    .news-item-title {
-      overflow-wrap: break-word;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    .news-item-arrow {
-      font-size: 12px;
-      color: var(--lime);
-      flex-shrink: 0;
-    }
-
-    .news-loading {
-      padding: 32px 0;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    /* ─── RESPONSIVE ─── */
-    /* ブレークポイントは この順序 で記述すること。
-       1〜3 は同一詳細度で範囲が重なるため、トークンの解決がソース順に依存する。 */
-
-    /* ─── TABLET (768-1024px) ─── */
-    @media (max-width: 1024px) {
-      :root {
-        --pad-x: 40px;
-        --header-pad-x: 32px;
+    @media (max-width: 1023px) {
+      .service-brief {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    /* ─── MOBILE (~767px) ─── */
+    @media (max-width: 599px) {
+      .service-brief {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 活動レポート（先頭1件を大きく、残りを3列） */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s-5);
+    }
+
+    .bento .report-card.featured {
+      grid-column: span 3;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      align-items: stretch;
+    }
+
+    /* 先頭カードも同じ理由で高さを固定する（height:100% では写真の縦横比に引きずられる） */
+    .bento .report-card.featured img {
+      height: 340px;
+    }
+
+    .bento .report-card.featured .card-body {
+      padding: var(--s-7) var(--s-6);
+      align-self: center;
+    }
+
+    @media (max-width: 1023px) {
+      .bento {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .bento .report-card.featured {
+        grid-column: span 2;
+      }
+    }
+
     @media (max-width: 767px) {
-      :root {
-        --pad-x: 20px;
-        --header-pad-x: 20px;
-        --header-h: 56px;
-      }
-
-      /* ヘッダー */
-      .site-header .logo {
-        font-size: 12px;
-      }
-
-      .site-header nav {
-        gap: 20px;
-      }
-
-      [data-js="1"] .nav-toggle {
-        display: inline-flex;
-        width: 44px;
-        height: 44px;
-        align-items: center;
-        justify-content: center;
-      }
-
-      [data-js="1"] .site-header nav {
-        display: none;
-      }
-
-      [data-js="1"] .site-header.is-open nav {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: var(--header-h);
-        left: 0;
-        right: 0;
-        gap: 0;
-        padding: 4px var(--header-pad-x) 12px;
-        background: var(--white);
-        border-bottom: 1px solid var(--border);
-        max-height: calc(100vh - var(--header-h));
-        max-height: calc(100svh - var(--header-h));
-        overflow-y: auto;
-      }
-
-      [data-js="1"] .site-header.is-open nav a {
-        display: flex;
-        align-items: center;
-        min-height: 44px;
-      }
-
-      /* JS無効時のフォールバック: nav だけでなく .site-header 自身も折り返す必要がある */
-      html:not([data-js="1"]) .site-header {
-        flex-wrap: wrap;
-      }
-
-      html:not([data-js="1"]) .site-header nav {
-        flex-wrap: wrap;
-      }
-
-      /* ヒーロー */
-      .hero {
-        padding: 80px var(--pad-x) 56px;
-      }
-
-      .hero-scroll {
-        display: none;
-      }
-
-      /* セクション */
-      .section {
-        padding: 72px var(--pad-x);
-      }
-
-      .band {
-        padding: 60px var(--pad-x);
-      }
-
-      footer {
-        padding: 48px var(--pad-x) 32px;
-      }
-
-      /* レポートカード */
       .bento {
         grid-template-columns: 1fr;
       }
 
-      .bento-card.featured,
-      .bento-card.side {
+      .bento .report-card.featured {
         grid-column: span 1;
+        grid-template-columns: 1fr;
       }
 
-      /* ベース宣言 .bento-card.featured img は詳細度 (0,2,1)。
-         メディアクエリは詳細度を加算しないため .bento-card img では上書きできない。 */
-      .bento-card.featured img,
-      .bento-card.side img {
-        height: auto;
-        aspect-ratio: 16 / 9;
+      .bento .report-card.featured img {
+        height: 216px;
       }
 
-      /* ニュース */
-      .news-list {
-        max-height: 300px;
-        padding-right: 6px;
+      .bento .report-card.featured .card-body {
+        padding: var(--s-5) var(--s-5) var(--s-6);
       }
+    }
 
+    /* ニュース */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border-radius: var(--r-card);
+      padding: var(--s-2) var(--s-6);
+      box-shadow: var(--shadow-card);
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 8em 1fr;
+      gap: var(--s-4);
+      align-items: baseline;
+      padding: var(--s-4) 0;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .news-item:last-child {
+      border-bottom: 0;
+    }
+
+    .news-item:hover .news-title {
+      color: var(--moss-dark);
+      text-decoration: underline;
+    }
+
+    /* 飛び先の無いお知らせ。リンクに見えないようにする */
+    .news-item.is-static {
+      cursor: default;
+    }
+
+    .news-item.is-static:hover .news-title {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .news-external {
+      margin-left: 5px;
+      vertical-align: -1px;
+      opacity: 0.6;
+    }
+
+    .news-item:hover .news-external {
+      opacity: 1;
+    }
+
+    .news-date {
+      font-size: var(--t-sm);
+      color: var(--ink-subtle);
+    }
+
+    .news-title {
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 599px) {
       .news-item {
-        padding: 0;
-      }
-
-      .news-item a {
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 4px 10px;
-        padding: 12px 0;
-        min-height: 44px;
-      }
-
-      .news-item-arrow {
-        order: 1;
-        margin-left: auto;
-      }
-
-      .news-item-title {
-        order: 2;
-        flex: 1 1 100%;
-      }
-
-      /* 取組について */
-      .band-inner {
         grid-template-columns: 1fr;
-        gap: 36px;
-      }
-
-      /* 募集情報 */
-      .recruit-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .recruit-card .dl-row {
-        grid-template-columns: 1fr;
-        gap: 2px;
-      }
-
-      /* お問い合わせ */
-      .contact-wrap {
-        grid-template-columns: 1fr;
-        padding: 28px 20px;
-      }
-
-      .contact-extra {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .contact-modal-frame {
-        width: 100%;
-        max-height: 100dvh;
-        border-radius: 0;
-        padding: 28px 20px;
-      }
-
-      .contact-modal-frame::before {
-        border-radius: 0;
-      }
-
-      .contact-modal {
-        padding: 0;
-      }
-
-      .contact-form .field-row {
-        grid-template-columns: 1fr;
-      }
-
-      /* フッター */
-      .footer-inner {
-        flex-direction: column;
-      }
-
-      .footer-sns {
-        align-items: flex-start;
-      }
-
-      .footer-sns a {
-        display: inline-flex;
-        align-items: center;
-        min-height: 44px;
-      }
-
-      .footer-copy-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
+        gap: var(--s-1);
       }
     }
 
-    /* ─── SMALL PHONE (~374px) ─── */
-    @media (max-width: 374px) {
-      :root {
-        --pad-x: 16px;
-        --header-pad-x: 16px;
-      }
+    /* 募集情報の要約 */
+    .recruit-brief {
+      background: var(--moss);
+      border-radius: var(--r-hero);
+      padding: var(--s-8) var(--s-7);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-6);
+      flex-wrap: wrap;
     }
 
-    /* ─── LANDSCAPE / SHORT VIEWPORT ─── */
-    @media (orientation: landscape) and (max-height: 500px) {
-      .hero {
-        height: auto;
-        min-height: 0;
-        padding-top: calc(var(--header-h) + 32px);
-        padding-bottom: 40px;
-      }
+    .recruit-brief .section-label {
+      color: #DCE6C4;
     }
 
-    /* ─── REDUCED MOTION ─── */
-    @media (prefers-reduced-motion: reduce) {
-      .hero-scroll::after {
-        animation: none;
-      }
+    .recruit-brief h2 {
+      color: var(--surface);
+      margin: 0 0 var(--s-3);
+    }
 
-      .site-header nav,
-      .nav-toggle span {
-        transition: none;
-      }
+    .recruit-brief p {
+      color: #EDF2DF;
+      margin: 0;
+      max-width: 46em;
+    }
+
+    .recruit-brief .btn-primary {
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .recruit-brief .btn-primary:hover {
+      background: var(--kaki-soft);
+      color: var(--kaki-dark);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ─── HEADER ─── -->
+  <!-- ─── ヘッダー ─── -->
   <header class="site-header">
-    <a class="logo" href="./">Local Impact Design飯南株式会社</a>
+    <a class="logo" href="./">
+      <img class="logo-mark" src="images/logo-mark.png" alt="" width="32" height="36">
+      <span>Local Impact Design 飯南</span>
+    </a>
     <nav id="site-nav">
-      <a href="#news">ニュース</a>
-      <a href="#reports">活動レポート</a>
-      <a href="#about">取組について</a>
-      <a href="#recruit">募集情報</a>
-      <a href="#contact">お問い合わせ</a>
+      <a href="about.html">企業情報</a>
+      <a href="service.html">サービス</a>
+      <a href="member.html">メンバー</a>
+      <a href="reports.html">活動レポート</a>
+      <a href="recruit.html">募集情報</a>
+      <a class="nav-external" href="https://farm.lid-iinan.com/" target="_blank" rel="noopener noreferrer">
+        FARM
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 4h6v6M20 4L10 14M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" />
+        </svg>
+        <span class="visually-hidden">（別サイトが新しいタブで開きます）</span>
+      </a>
+      <a class="nav-cta" href="contact.html">お問い合わせ</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false"
       aria-label="メニューを開く">
-      <span></span>
-      <span></span>
-      <span></span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
     </button>
   </header>
 
-  <!-- ─── HERO ─── -->
+  <!-- ─── ヒーロー ─── -->
   <section class="hero">
-    <!-- ★ 飯南町の風景写真（images/ フォルダに入れて src を変更） -->
-    <img src="images/hero.jpg" alt="飯南町の風景" onerror="this.src='https://picsum.photos/seed/iinan-forest/1600/900'">
-    <div class="hero-content">
-      <p class="hero-eyebrow">Iinan-cho, Shimane</p>
-      <h1>地域と<em>IT</em>で、<br>新しい未来を<br>つくる。</h1>
-      <p class="hero-desc">島根県飯石郡飯南町。Local Impact Design飯南株式会社が受け入れる、農業・観光・教育 x IT分野における地域おこし協力隊の活動記録です。</p>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">島根県飯南町 / 地域おこし協力隊</p>
+        <h1>IT の力で<br>地域の未来をつくる</h1>
+        <p class="hero-lead">午前は地域の現場へ、午後は IT を学ぶ。<br>飯南町で、新しい働き方をつくっています。</p>
+        <div class="btn-row">
+          <a class="btn-primary" href="recruit.html">募集情報を見る</a>
+          <a class="btn-outline" href="reports.html">活動レポート</a>
+        </div>
+      </div>
+      <!-- ヒーロー写真は活動レポートの写真から毎回ランダムに選ぶ（下部のスクリプト）。
+           先に src を書くと選び直しで二重に読み込むことになるため、ここでは指定しない。
+           JavaScript が無効な場合は <noscript> の固定画像を表示する -->
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" id="hero-photo" alt="" hidden
+          onerror="this.onerror=null;this.src='images/placeholder.svg'">
+        <noscript>
+          <img class="hero-photo" src="images/1-1.jpg" alt="飯南町での活動の様子">
+        </noscript>
+        <a class="hero-credit" id="hero-credit" href="#"></a>
+      </div>
     </div>
-    <div class="hero-scroll">SCROLL</div>
   </section>
 
-  <!-- ─── ニュース ─── -->
-  <div class="section" id="news" style="padding-bottom: 0;">
-    <p class="section-label">News</p>
-    <h2 class="section-title">ニュース</h2>
-    <div id="news-list" class="news-list">
-      <div class="news-loading">読み込み中…</div>
+  <!-- ─── 事業紹介の要約 ─── -->
+  <div class="section" id="service-brief">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <p class="section-label">SERVICE</p>
+          <h2 class="section-title">わたしたちの事業</h2>
+        </div>
+        <a class="btn-pill" href="service.html">サービスを見る</a>
+      </div>
+      <div class="service-brief">
+        <div class="service-brief-item">
+          <span class="icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#55682F" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="13" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg>
+          </span>
+          <h3>IT</h3>
+          <p>ITスキルを習得し、地域課題の解決につながるデジタル活用を進めます。</p>
+        </div>
+        <div class="service-brief-item kaki">
+          <span class="icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8F4322" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 20l6-16 6 16" />
+              <path d="M13 12l4-6 4 14" />
+            </svg>
+          </span>
+          <h3>観光</h3>
+          <p>イベント運営、情報発信、観光コンテンツの企画。町の魅力を外へ届けます。</p>
+        </div>
+        <div class="service-brief-item">
+          <span class="icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#55682F" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21V9" />
+              <path d="M12 9c0-3 2-6 6-6 0 4-3 6-6 6z" />
+              <path d="M12 13c0-3-2-5-5-5 0 3 2 5 5 5z" />
+            </svg>
+          </span>
+          <h3>農業</h3>
+          <p>植え付けや収穫などの農作業支援と、販売経路の確保を支えます。</p>
+        </div>
+        <div class="service-brief-item kaki">
+          <span class="icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8F4322" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20s-7-4.3-7-9a4 4 0 017-2.6A4 4 0 0119 11c0 4.7-7 9-7 9z" />
+            </svg>
+          </span>
+          <h3>保育・福祉</h3>
+          <p>町内の保育機関や地域団体と連携し、子どもと高齢者の暮らしを支えます。</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- ─── 活動レポート ─── -->
-  <div class="section" id="reports">
-    <p class="section-label">Activity Reports</p>
-    <h2 class="section-title">活動レポート</h2>
-    <div id="bento" class="bento">
-      <div class="bento-loading">読み込み中…</div>
-    </div>
-    <div class="bento-more" id="bento-more" hidden>
-      <button type="button" class="btn-more" id="bento-more-btn">もっと見る</button>
+  <div class="section" id="reports" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <p class="section-label">REPORTS</p>
+          <h2 class="section-title">活動レポート</h2>
+        </div>
+        <a class="btn-pill" href="reports.html">すべて見る</a>
+      </div>
+      <div id="bento" class="bento">
+        <p class="is-loading">読み込み中...</p>
+      </div>
     </div>
   </div>
 
-  <!-- ─── ABOUT ─── -->
-  <div class="band" id="about">
-    <div class="band-inner">
+  <!-- ─── ニュース ─── -->
+  <div class="section" id="news" style="padding-top:0;">
+    <div class="section-inner">
+      <p class="section-label">NEWS</p>
+      <h2 class="section-title">ニュース</h2>
+      <div id="news-list" class="news-list">
+        <p class="is-loading">読み込み中...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 募集情報の要約 ─── -->
+  <div class="section" id="recruit-summary" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="recruit-brief">
+        <div>
+          <p class="section-label">JOIN US</p>
+          <h2>協力隊員を募集しています</h2>
+          <p>大都市圏などから飯南町へ移住できる方。期間は最長3年（1年ごとに更新）。
+            農業・観光・教育分野の地域協力活動と、ITスキルを活かした情報発信・業務改善に取り組みます。</p>
+        </div>
+        <a class="btn-primary" href="recruit.html">募集要項を見る</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── お問い合わせ導線 ─── -->
+  <div class="section" id="contact-cta" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="contact-cta">
+        <div>
+          <h2>お問い合わせ</h2>
+          <p>活動・連携・移住に関するご質問はお気軽にどうぞ。</p>
+          <p style="margin-top:12px;">
+            <a class="contact-tel-link" href="tel:0854623122">0854-62-3122</a><br>
+            <small style="color:var(--ink-subtle);">Local Impact Design 飯南株式会社（平日 9:00〜17:00）</small>
+          </p>
+        </div>
+        <a class="btn-primary" href="contact.html">お問い合わせフォームへ</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── フッター ─── -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
       <div>
-        <p class="section-label">Our Mission</p>
-        <h2 class="section-title">地域協力活動<br>× IT で変わる<br>飯南町の姿。</h2>
-      </div>
-      <div class="band-right">
-        <div class="band-item">
-          <h4>農業</h4>
-          <p>スマート農業の導入支援・担い手不足の解消。センサーやデータ活用で農家の負担を軽減します。</p>
-        </div>
-        <div class="band-item">
-          <h4>観光・情報発信</h4>
-          <p>SNSやWebを活用した地域の魅力発信。訪れたくなる飯南町をデジタルでPRします。</p>
-        </div>
-        <div class="band-item">
-          <h4>教育</h4>
-          <p>子どもたちへのIT教育・プログラミング体験。次世代の担い手を育てます。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 募集情報 ─── -->
-  <div class="section" id="recruit">
-    <p class="section-label">Join Us</p>
-    <h2 class="section-title">募集情報</h2>
-    <div class="recruit-grid">
-      <div class="recruit-card">
-        <h3>協力隊員を募集しています</h3>
-        <dl>
-          <div class="dl-row">
-            <dt>対象</dt>
-            <dd>大都市圏などから飯南町へ移住できる方</dd>
-          </div>
-          <div class="dl-row">
-            <dt>活動内容</dt>
-            <dd>農業・観光・教育分野における地域協力活動、ITスキルを活かした情報発信・業務改善</dd>
-          </div>
-          <div class="dl-row">
-            <dt>期間</dt>
-            <dd>最長3年（1年ごとに更新）</dd>
-          </div>
-          <div class="dl-row">
-            <dt>連携先</dt>
-            <dd>Local Impact Design飯南株式会社 / 飯南町まちづくり推進課</dd>
-          </div>
-        </dl>
-      </div>
-      <div class="recruit-card">
-        <h3>地域の事業者の方へ</h3>
-        <dl>
-          <div class="dl-row">
-            <dt>こんな課題は？</dt>
-            <dd>事業を継いでくれる担い手を探している<br>情報発信・通販に力を入れたい<br>スマート農業に挑戦したい</dd>
-          </div>
-          <div class="dl-row">
-            <dt>対象</dt>
-            <dd>個人事業主・町内事業所等</dd>
-          </div>
-          <div class="dl-row">
-            <dt>備考</dt>
-            <dd>連携先の選定基準・条件があります。連携に至らない場合もございます。</dd>
-          </div>
-        </dl>
-        <!-- <a class="btn-outline" href="https://docs.google.com/forms/d/e/1FAIpQLSdx65LGJMEO_pbBlGZJtf-3qaDh6hwbQ3asKSyPr_QxRarFUw/viewform" target="_blank" rel="noopener">連携を相談する</a> -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── お問い合わせ ─── -->
-  <div class="section" id="contact" style="padding-top:0;">
-    <div class="contact-wrap">
-      <div>
-        <h3>お問い合わせ</h3>
-        <p class="sub">活動・連携・移住に関するご質問はお気軽にどうぞ。</p>
-        <div class="contact-tel">
-          <a class="contact-tel-link" href="tel:0854623122">0854-62-3122</a>
-          <small>Local Impact Design 飯南株式会社（平日 9:00〜17:00）</small>
-        </div>
-        <button type="button" class="btn-primary" id="contact-form-open" aria-haspopup="dialog" aria-controls="contact-modal">問い合わせはこちら</button>
-      </div>
-      <div class="contact-extra">
-        <div class="company-info">
-          <dl class="company-dl">
-            <div class="dl-row">
-              <dt>会社名</dt>
-              <dd>Local Impact Design 飯南株式会社</dd>
-            </div>
-            <div class="dl-row">
-              <dt>代表取締役社長</dt>
-              <dd>小西 未祐</dd>
-            </div>
-            <div class="dl-row">
-              <dt>創業</dt>
-              <dd>2026年4月</dd>
-            </div>
-            <div class="dl-row">
-              <dt>住所</dt>
-              <dd>〒690-3513 島根県飯石郡飯南町下赤名830番地</dd>
-            </div>
-            <div class="dl-row">
-              <dt>電話番号</dt>
-              <dd><a class="contact-tel-link" href="tel:0854623122">0854-62-3122</a></dd>
-            </div>
-          </dl>
-        </div>
-        <div class="map-embed">
-          <iframe
-            src="https://maps.google.com/maps?q=35.0001576,132.7155656&z=17&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Local Impact Design 飯南株式会社 所在地地図"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── お問い合わせフォーム モーダル ─── -->
-  <div class="contact-modal" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
-    <div class="contact-modal-frame">
-      <button type="button" class="contact-modal-close" id="contact-modal-close" aria-label="閉じる">&times;</button>
-      <p class="contact-modal-eyebrow">Contact</p>
-      <h3 id="contact-modal-title">お問い合わせフォーム</h3>
-      <p class="sub" id="contact-modal-sub">下記項目をご入力の上、送信してください。担当者より折り返しご連絡いたします。</p>
-      <form id="contact-form" class="contact-form" action="https://formspree.io/f/xbgrnvbq" method="POST">
-        <div class="field-row">
-          <div class="field">
-            <label for="contact-name">氏名<span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="contact-name" name="name" placeholder="山田 太郎" required>
-          </div>
-          <div class="field">
-            <label for="contact-email">メールアドレス<span class="req" aria-hidden="true">*</span></label>
-            <input type="email" id="contact-email" name="email" placeholder="you@example.com" required>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="contact-phone">電話番号（任意）</label>
-            <input type="tel" id="contact-phone" name="phone" placeholder="0854-62-3122" pattern="[0-9\-()+ ]*">
-          </div>
-          <div class="field">
-            <label for="contact-category">お問い合わせ種別<span class="req" aria-hidden="true">*</span></label>
-            <select id="contact-category" name="category" required>
-              <option value="" disabled selected>選択してください</option>
-              <option value="一般のお問い合わせ">一般のお問い合わせ</option>
-              <option value="連携について">連携について</option>
-              <option value="募集・応募について">募集・応募について</option>
-              <option value="取材・メディア関連">取材・メディア関連</option>
-              <option value="その他">その他</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label for="contact-message">問い合わせ内容<span class="req" aria-hidden="true">*</span></label>
-          <textarea id="contact-message" name="message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
-        </div>
-        <input type="hidden" name="_subject" id="contact-subject" value="[お問い合わせ種別未選択] Local Impact Design 飯南株式会社 お問い合わせ">
-        <div class="field field-consent">
-          <input type="checkbox" id="contact-consent" name="consent" required>
-          <label for="contact-consent">ご記入いただいた個人情報はお問い合わせ対応の目的以外には使用しません。<a href="policy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する</label>
-        </div>
-        <div id="contact-recaptcha"></div>
-        <button type="submit" class="btn-primary">送信する</button>
-      </form>
-      <div class="contact-form-success" id="contact-form-success" role="status">お問い合わせを受け付けました。担当者よりご連絡いたします。</div>
-      <div class="contact-form-error" id="contact-form-error" role="alert"><span id="contact-form-error-text">送信に失敗しました。時間をおいて再度お試しいただくか、お電話にてお問い合わせください。</span>（<a class="contact-tel-link" href="tel:0854623122">0854-62-3122</a>）</div>
-    </div>
-  </div>
-
-  <!-- ─── FOOTER ─── -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <p class="name">Local Impact Design 飯南株式会社</p>
-        <p class="addr">
+        <p class="footer-name">Local Impact Design 飯南株式会社</p>
+        <address>
           〒690-3513 島根県飯石郡飯南町下赤名830番地<br>
-          代表取締役社長 小西 未祐<br>
-          代表取締役副社長/プロジェクトリーダー 赤藤 昭彦
-        </p>
+          TEL <a href="tel:0854623122">0854-62-3122</a>（平日 9:00〜17:00）
+        </address>
       </div>
-      <div class="footer-sns">
-        <!-- ★ 実際のSNSアカウントURLに差し替えてください -->
-        <a href="#" target="_blank" rel="noopener">↗ Instagram（現在準備中です）</a>
-        <a href="#" target="_blank" rel="noopener">↗ X (Twitter)（現在準備中です）</a>
+      <div class="footer-links">
+        <ul>
+          <li><a href="about.html">企業情報</a></li>
+          <li><a href="service.html">サービス</a></li>
+          <li><a href="member.html">メンバー</a></li>
+        </ul>
+        <ul>
+          <li><a href="reports.html">活動レポート</a></li>
+          <li><a href="recruit.html">募集情報</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+          <li><a href="policy.html">プライバシーポリシー</a></li>
+          <li><a href="terms.html">利用規約</a></li>
+        </ul>
       </div>
     </div>
-    <div class="footer-copy-row">
-      <p class="footer-copy">&copy; 2026 Local Impact Design 飯南株式会社. All Rights Reserved.</p>
-      <p class="footer-legal"><a href="policy.html">プライバシーポリシー</a></p>
-    </div>
+    <p class="footer-copy">© 2026 Local Impact Design飯南株式会社 All right reserved.</p>
   </footer>
 
   <script>
-    // サイトルートからの相対パスで画像を参照
-    const IMG_BASE = '';
-
-    function fmtDate(str) {
-      return str.replace(/-/g, '.');
-    }
-
-    function buildCard(report, type) {
-      const fallback = `https://picsum.photos/seed/iinan${report.id}/800/400`;
-      return `
-      <a class="bento-card ${type}" href="pages/report.html?id=${report.id}">
-        <img src="${IMG_BASE}${report.image}" alt="${report.title}"
-             onerror="this.src='${fallback}'">
-        <div class="card-body">
-          <div class="card-meta">
-            <span class="card-date">${fmtDate(report.date)}</span>
-            <span class="card-tag">${report.tag}</span>
-          </div>
-          <h3>${report.title}</h3>
-          <p>${report.summary}</p>
-          <span class="card-link">続きを読む</span>
-        </div>
-      </a>`;
-    }
-
-    // 初回表示は featured 1件 + side 6件、以降は「もっと見る」で6件ずつ追記
-    const REPORTS_INITIAL = 7;
-    const REPORTS_STEP = 6;
-
-    let allReports = [];
-    let shownReports = 0;
-
-    function updateReportsMore() {
-      const wrap = document.getElementById('bento-more');
-      const btn = document.getElementById('bento-more-btn');
-      const rest = allReports.length - shownReports;
-      if (rest <= 0) {
-        wrap.hidden = true;
-        return;
-      }
-      wrap.hidden = false;
-      btn.textContent = `もっと見る（残り${rest}件）`;
-    }
-
-    // 追記した先頭カードを返す（キーボード操作時のフォーカス移動用）
-    function appendReports(count) {
-      const bento = document.getElementById('bento');
-      const slice = allReports.slice(shownReports, shownReports + count);
-      const html = slice
-        .map((r, i) => buildCard(r, shownReports + i === 0 ? 'featured' : 'side'))
-        .join('');
-      bento.insertAdjacentHTML('beforeend', html);
-      const firstNew = bento.children[shownReports] || null;
-      shownReports += slice.length;
-      updateReportsMore();
-      return firstNew;
-    }
+    // トップページに載せるレポートの件数。7件を超える分は reports.html で見せる
+    const REPORTS_ON_TOP = 7;
 
     async function loadReports() {
       const bento = document.getElementById('bento');
       try {
-        const res = await fetch('data/reports.json');
-        if (!res.ok) throw new Error('fetch failed');
-        const reports = await res.json();
-        reports.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        const reports = await LID.fetchJSON('data/reports.json');
+        if (!Array.isArray(reports)) throw new Error('reports.json が配列ではありません');
 
-        if (!reports.length) {
-          bento.innerHTML = '<div class="bento-loading">記事がありません</div>';
-          return;
-        }
+        // reports.json は日付順に並んでいないため必ず整列する
+        const sorted = LID.sortByDateDesc(reports.filter(r => r && r.id != null && r.title));
+        const slice = sorted.slice(0, REPORTS_ON_TOP);
 
-        allReports = reports;
-        shownReports = 0;
-        bento.innerHTML = '';
-        appendReports(REPORTS_INITIAL);
-      } catch (e) {
-        bento.innerHTML = '<div class="bento-loading" style="color:#c00;">記事の読み込みに失敗しました</div>';
+        bento.innerHTML = slice
+          .map((r, i) => LID.buildReportCard(r, i === 0 ? 'featured' : 'side'))
+          .join('');
+
+        setHeroPhoto(sorted);
+      } catch (err) {
+        console.error(err);
+        LID.renderNotice(bento, 'レポートを読み込めませんでした。時間をおいて再度お試しください。', true);
       }
     }
 
-    document.getElementById('bento-more-btn').addEventListener('click', () => {
-      const firstNew = appendReports(REPORTS_STEP);
-      // 全件表示でボタンが消えるとフォーカスが body に飛ぶため、追記分の先頭へ移す
-      if (firstNew) firstNew.focus({ preventScroll: true });
-    });
+    // ヒーロー写真をレポートの写真から1枚選ぶ。
+    // reports.json は loadReports が取得済みのものを使い回すため、通信は増えない。
+    function setHeroPhoto(reports) {
+      const img = document.getElementById('hero-photo');
+      const credit = document.getElementById('hero-credit');
+      if (!img) return;
 
-    loadReports();
+      // 写真を持つレポートだけを対象にする（画像未登録の記事があるため）
+      const pool = [];
+      reports.forEach(r => {
+        const list = Array.isArray(r.images) && r.images.length ? r.images : (r.image ? [r.image] : []);
+        list.filter(Boolean).forEach(src => pool.push({ src, report: r }));
+      });
+      if (!pool.length) return;
+
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      img.src = pick.src;
+      img.alt = pick.report.title;
+      img.hidden = false;
+
+      if (credit) {
+        credit.href = `pages/report.html?id=${pick.report.id}`;
+        credit.textContent = `写真：${pick.report.title}`;
+        credit.classList.add('is-visible');
+      }
+    }
 
     async function loadNews() {
-      const container = document.getElementById('news-list');
+      const list = document.getElementById('news-list');
       try {
-        const res = await fetch('data/news.json');
-        if (!res.ok) throw new Error('fetch failed');
-        const items = await res.json();
+        const news = await LID.fetchJSON('data/news.json');
+        if (!Array.isArray(news)) throw new Error('news.json が配列ではありません');
 
-        if (!items.length) {
-          container.innerHTML = '<div class="news-loading">ニュースはありません</div>';
-          return;
-        }
+        const sorted = LID.sortByDateDesc(news.filter(n => n && n.title));
+        list.innerHTML = sorted.map(n => {
+          const date = LID.formatDate(n.date, 'dot');
+          const title = LID.escapeHtml(n.title);
+          const url = (n.url || '').trim();
 
-        container.innerHTML = items.map(item => {
-          const isExternal = item.url.startsWith('https://');
-          const attrs = isExternal ? ' target="_blank" rel="noopener"' : '';
-          const arrow = isExternal ? '↗' : '';
-          const date = item.date ? `<span class="card-date">${fmtDate(item.date)}</span>` : '';
-          return `
-        <div class="news-item">
-          <a href="${item.url}"${attrs}>
-            ${date}
-            <span class="news-item-title">${item.title}</span>
-            <span class="news-item-arrow">${arrow}</span>
-          </a>
-        </div>`;
+          // 飛び先の無いお知らせ（「〇〇に出展します」など）はリンクにしない
+          if (!url || url === '#') {
+            return `<div class="news-item is-static">
+              <span class="news-date">${date}</span>
+              <span class="news-title">${title}</span>
+            </div>`;
+          }
+
+          // 外部サイトは別タブで開き、外部であることをアイコンで示す
+          const external = /^https?:\/\//.test(url);
+          const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+          const icon = external
+            ? ` <svg class="news-external" width="11" height="11" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true"><path d="M14 4h6v6M20 4L10 14M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>`
+              + '<span class="visually-hidden">（別サイトが新しいタブで開きます）</span>'
+            : '';
+
+          return `<a class="news-item" href="${LID.escapeHtml(url)}"${attrs}>
+            <span class="news-date">${date}</span>
+            <span class="news-title">${title}${icon}</span>
+          </a>`;
         }).join('');
-      } catch (e) {
-        container.innerHTML = '<div class="news-loading" style="color:#c00;">ニュースの読み込みに失敗しました</div>';
+      } catch (err) {
+        console.error(err);
+        LID.renderNotice(list, 'ニュースを読み込めませんでした。', true);
       }
     }
 
-    loadNews();
-
-    // ─── モバイルナビ（折りたたみ） ───
-    function initMobileNav() {
-      const header = document.querySelector('.site-header');
-      const btn = document.getElementById('nav-toggle');
-      const nav = document.getElementById('site-nav');
-      if (!header || !btn || !nav) return;
-
-      function setOpen(open) {
-        header.classList.toggle('is-open', open);
-        btn.setAttribute('aria-expanded', String(open));
-        btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-      }
-
-      btn.addEventListener('click', () => {
-        setOpen(btn.getAttribute('aria-expanded') !== 'true');
-      });
-
-      nav.addEventListener('click', (e) => {
-        if (e.target.closest('a')) setOpen(false);
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
-          setOpen(false);
-          btn.focus();
-        }
-      });
-
-      const mql = window.matchMedia('(min-width: 768px)');
-      mql.addEventListener('change', (e) => {
-        if (e.matches) setOpen(false);
-      });
-    }
-
-    initMobileNav();
-
-    // ─── お問い合わせフォーム モーダル ───
-    function initContactModal() {
-      const openBtn = document.getElementById('contact-form-open');
-      const modal = document.getElementById('contact-modal');
-      const frame = modal ? modal.querySelector('.contact-modal-frame') : null;
-      const closeBtn = document.getElementById('contact-modal-close');
-      const nameInput = document.getElementById('contact-name');
-      const form = document.getElementById('contact-form');
-      const successEl = document.getElementById('contact-form-success');
-      const errorEl = document.getElementById('contact-form-error');
-      const errorTextEl = document.getElementById('contact-form-error-text');
-      const categorySelect = document.getElementById('contact-category');
-      const subjectInput = document.getElementById('contact-subject');
-      const subEl = document.getElementById('contact-modal-sub');
-      if (!openBtn || !modal || !frame || !closeBtn || !nameInput || !form) return;
-
-      let lastFocused = null;
-      let lockedScrollY = 0;
-      let recaptchaWidgetId = null;
-      let recaptchaLoaded = false;
-      let recaptchaFailed = false;
-
-      function getFocusable() {
-        return Array.from(frame.querySelectorAll(
-          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-        ));
-      }
-
-      function onKeydown(e) {
-        if (e.key === 'Escape') {
-          closeModal();
-          return;
-        }
-        if (e.key !== 'Tab') return;
-        const focusable = getFocusable();
-        if (!focusable.length) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-
-      function resetFormState() {
-        form.reset();
-        form.style.display = '';
-        if (subEl) subEl.style.display = '';
-        successEl.classList.remove('is-visible');
-        errorEl.classList.remove('is-visible');
-        if (subjectInput) subjectInput.value = '[お問い合わせ種別未選択] Local Impact Design 飯南株式会社 お問い合わせ';
-        const submitBtn = form.querySelector('button[type="submit"]');
-        if (submitBtn && !recaptchaFailed) submitBtn.disabled = false;
-        if (recaptchaLoaded && recaptchaWidgetId !== null) {
-          window.grecaptcha.reset(recaptchaWidgetId);
-        }
-      }
-
-      function openModal() {
-        resetFormState();
-        lastFocused = document.activeElement;
-        lockedScrollY = window.scrollY;
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${lockedScrollY}px`;
-        document.body.style.left = '0';
-        document.body.style.right = '0';
-        modal.classList.add('is-open');
-        requestAnimationFrame(() => modal.classList.add('is-visible'));
-        nameInput.focus();
-        document.addEventListener('keydown', onKeydown);
-        loadRecaptcha();
-      }
-
-      function closeModal() {
-        modal.classList.remove('is-visible');
-        setTimeout(() => modal.classList.remove('is-open'), 220);
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.left = '';
-        document.body.style.right = '';
-        window.scrollTo(0, lockedScrollY);
-        document.removeEventListener('keydown', onKeydown);
-        if (lastFocused) lastFocused.focus();
-      }
-
-      openBtn.addEventListener('click', openModal);
-      closeBtn.addEventListener('click', closeModal);
-      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-
-      function showError(message) {
-        if (errorTextEl) errorTextEl.textContent = message;
-        errorEl.classList.add('is-visible');
-      }
-
-      function renderRecaptcha() {
-        if (recaptchaLoaded) return;
-        recaptchaWidgetId = window.grecaptcha.render('contact-recaptcha', {
-          sitekey: '6Ldyz5ktAAAAAF2LXEPn20TjVSsUq9qdVENdewp-'
-        });
-        recaptchaLoaded = true;
-      }
-
-      function loadRecaptcha() {
-        if (recaptchaLoaded || recaptchaFailed) return;
-        if (window.grecaptcha && window.grecaptcha.render) {
-          renderRecaptcha();
-          return;
-        }
-        if (document.getElementById('recaptcha-api-script')) return;
-        window.__onRecaptchaApiLoad = renderRecaptcha;
-        const script = document.createElement('script');
-        script.id = 'recaptcha-api-script';
-        script.src = 'https://www.google.com/recaptcha/api.js?onload=__onRecaptchaApiLoad&render=explicit';
-        script.async = true;
-        script.defer = true;
-        script.onerror = () => {
-          recaptchaFailed = true;
-          const submitBtn = form.querySelector('button[type="submit"]');
-          if (submitBtn) submitBtn.disabled = true;
-          showError('現在フォームをご利用いただけません。お電話にてお問い合わせください。');
-        };
-        document.head.appendChild(script);
-      }
-
-      if (categorySelect && subjectInput) {
-        categorySelect.addEventListener('change', () => {
-          const label = categorySelect.value || 'お問い合わせ';
-          subjectInput.value = `[${label}] Local Impact Design 飯南株式会社 お問い合わせ`;
-        });
-      }
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        errorEl.classList.remove('is-visible');
-
-        if (recaptchaLoaded && recaptchaWidgetId !== null) {
-          const response = window.grecaptcha.getResponse(recaptchaWidgetId);
-          if (!response) {
-            showError('reCAPTCHAを完了してください。');
-            return;
-          }
-        }
-
-        const submitBtn = form.querySelector('button[type="submit"]');
-        if (submitBtn) submitBtn.disabled = true;
-
-        try {
-          const res = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { Accept: 'application/json' }
-          });
-          if (!res.ok) throw new Error('submit failed');
-          form.style.display = 'none';
-          if (subEl) subEl.style.display = 'none';
-          successEl.classList.add('is-visible');
-        } catch (err) {
-          showError('送信に失敗しました。時間をおいて再度お試しいただくか、お電話にてお問い合わせください。');
-          if (recaptchaLoaded && recaptchaWidgetId !== null) {
-            window.grecaptcha.reset(recaptchaWidgetId);
-          }
-        } finally {
-          if (submitBtn) submitBtn.disabled = false;
-        }
-      });
-    }
-
-    initContactModal();
+    // assets/site.js は defer で読み込むため、解析中に走るこのスクリプトより後に実行される。
+    // LID が定義されてから呼ぶために DOMContentLoaded を待つ（defer はこれより前に完了する）
+    document.addEventListener('DOMContentLoaded', () => {
+      loadReports();
+      loadNews();
+    });
   </script>
 
 </body>

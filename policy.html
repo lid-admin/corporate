@@ -1,206 +1,86 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-root="./">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>document.documentElement.dataset.js = '1';</script>
-  <title>プライバシーポリシー | 飯南町 地域おこし協力隊 活動報告 | Local Impact Design飯南</title>
-  <meta name="description" content="Local Impact Design飯南株式会社のプライバシーポリシー（個人情報保護方針）です。">
+  <title>プライバシーポリシー | Local Impact Design飯南株式会社</title>
+  <meta name="description" content="Local Impact Design飯南株式会社のプライバシーポリシー。個人情報の取得・利用目的・管理・第三者提供について定めています。">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://report.lid-iinan.com/policy.html">
-  <!-- Open Graph -->
+  <link rel="canonical" href="https://lid-iinan.com/policy.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="プライバシーポリシー | 飯南町 地域おこし協力隊 活動報告 | Local Impact Design飯南">
-  <meta property="og:description" content="Local Impact Design飯南株式会社のプライバシーポリシー（個人情報保護方針）です。">
-  <meta property="og:url" content="https://report.lid-iinan.com/policy.html">
-  <meta property="og:image" content="https://report.lid-iinan.com/images/hero.jpg">
-  <meta property="og:site_name" content="飯南町 地域おこし協力隊 | Local Impact Design飯南">
+  <meta property="og:title" content="プライバシーポリシー | Local Impact Design飯南株式会社">
+  <meta property="og:description" content="Local Impact Design飯南株式会社のプライバシーポリシー。個人情報の取得・利用目的・管理・第三者提供について定めています。">
+  <meta property="og:url" content="https://lid-iinan.com/policy.html">
+  <meta property="og:image" content="https://lid-iinan.com/images/hero.jpg">
+  <meta property="og:site_name" content="Local Impact Design飯南株式会社">
   <meta property="og:locale" content="ja_JP">
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="プライバシーポリシー | 飯南町 地域おこし協力隊 活動報告 | Local Impact Design飯南">
-  <meta name="twitter:description" content="Local Impact Design飯南株式会社のプライバシーポリシー（個人情報保護方針）です。">
-  <meta name="twitter:image" content="https://report.lid-iinan.com/images/hero.jpg">
-  <link rel="icon" href="images/favicon.ico">
+  <meta name="twitter:title" content="プライバシーポリシー | Local Impact Design飯南株式会社">
+  <meta name="twitter:description" content="Local Impact Design飯南株式会社のプライバシーポリシー。個人情報の取得・利用目的・管理・第三者提供について定めています。">
+  <meta name="twitter:image" content="https://lid-iinan.com/images/hero.jpg">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- Google tag (gtag.js) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBZH8WSNZX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-NBZH8WSNZX');
   </script>
+  <script defer src="assets/site.js"></script>
+
   <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --ink: #0f1a0d;
-      --green: #1a5c1e;
-      --lime: #5a9e3a;
-      --accent: #8dc63f;
-      --sand: #f7f5f0;
-      --muted: #6b7c69;
-      --border: rgba(0, 0, 0, 0.08);
-      --white: #ffffff;
-      --radius: 14px;
-      /* ─── RESPONSIVE TOKENS ─── */
-      --pad-x: 60px;
-      --header-pad-x: 40px;
-      --header-h: 64px;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', sans-serif;
-      color: var(--ink);
-      background: var(--white);
-      font-size: 15px;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* ─── HEADER ─── */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 var(--header-pad-x);
-      min-height: var(--header-h);
-      gap: 8px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.7);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .site-header .logo {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--green);
-    }
-
-    .site-header nav {
-      display: flex;
-      gap: 32px;
-    }
-
-    .site-header nav a {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-      transition: color 0.2s;
-    }
-
-    .site-header nav a:hover {
-      color: var(--green);
-    }
-
-    /* ─── HAMBURGER ─── */
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: 0;
-      padding: 0;
-      cursor: pointer;
-      flex-direction: column;
-      gap: 4px;
-      flex-shrink: 0;
-    }
-
-    .nav-toggle span {
-      display: block;
-      width: 18px;
-      height: 2px;
-      background: var(--green);
-      transition: transform 0.2s, opacity 0.2s;
-    }
-
-    .site-header.is-open .nav-toggle span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .site-header.is-open .nav-toggle span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .site-header.is-open .nav-toggle span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-
-    /* ─── SECTION BASE ─── */
-    .section {
-      padding: 100px var(--pad-x);
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    /* ─── POLICY ─── */
+    /* ─── プライバシーポリシーページ固有 ─── */
     .policy-wrap {
-      max-width: 760px;
+      max-width: 800px;
       margin: 0 auto;
+      background: var(--surface);
+      border-radius: var(--r-card);
+      padding: var(--s-8) var(--s-7);
+      box-shadow: var(--shadow-card);
     }
 
     .policy-wrap .eyebrow {
-      font-size: 12px;
+      font-size: var(--t-sm);
       font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--lime);
-      text-transform: uppercase;
-      margin-bottom: 10px;
+      letter-spacing: 0.16em;
+      color: var(--moss);
+      margin: 0 0 var(--s-2);
     }
 
     .policy-wrap h1 {
-      font-size: clamp(24px, 4vw, 32px);
-      font-weight: 700;
-      margin-bottom: 12px;
+      font-size: var(--t-page-title);
+      margin: 0 0 var(--s-3);
     }
 
     .policy-wrap .updated {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 48px;
+      font-size: var(--t-sm);
+      color: var(--ink-subtle);
+      margin: 0 0 var(--s-7);
     }
 
     .policy-wrap section + section {
-      margin-top: 40px;
+      margin-top: var(--s-7);
     }
 
     .policy-wrap h2 {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--green);
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
+      font-size: var(--t-lg);
+      margin: 0 0 var(--s-4);
+      padding-bottom: var(--s-3);
+      border-bottom: 1px solid var(--line);
     }
 
     .policy-wrap p {
-      margin-bottom: 12px;
+      font-size: 15px;
+      line-height: 1.95;
+      color: var(--ink-muted);
+      margin: 0 0 var(--s-4);
     }
 
     .policy-wrap p:last-child {
@@ -209,8 +89,11 @@
 
     .policy-wrap ol,
     .policy-wrap ul {
+      margin: 0 0 var(--s-4);
       padding-left: 1.4em;
-      margin-bottom: 12px;
+      font-size: 15px;
+      line-height: 1.95;
+      color: var(--ink-muted);
     }
 
     .policy-wrap ol:last-child,
@@ -219,228 +102,61 @@
     }
 
     .policy-wrap li + li {
-      margin-top: 4px;
+      margin-top: var(--s-2);
     }
 
     .policy-wrap .company-block {
-      margin-top: 16px;
-      background: var(--sand);
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      font-size: 14px;
+      margin-top: var(--s-4);
+      padding: var(--s-5);
+      background: var(--moss-soft);
+      border-radius: var(--r-icon);
     }
 
     .policy-wrap .company-block p {
-      margin-bottom: 4px;
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--ink);
-      color: rgba(255, 255, 255, 0.5);
-      padding: 56px var(--pad-x) 40px;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 40px;
-      flex-wrap: wrap;
-      padding-bottom: 36px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 28px;
-    }
-
-    .footer-brand .name {
+      margin: 0 0 var(--s-1);
       font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 6px;
     }
 
-    .footer-brand .addr {
-      font-size: 12px;
-      line-height: 1.7;
-    }
-
-    .footer-sns {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: flex-end;
-    }
-
-    .footer-sns a {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.5);
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
-    }
-
-    .footer-sns a:hover {
-      color: #fff;
-    }
-
-    .footer-copy-row {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .footer-copy {
-      font-size: 11px;
-    }
-
-    .footer-legal a {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.5);
-      transition: color 0.2s;
-    }
-
-    .footer-legal a:hover {
-      color: #fff;
-    }
-
-    /* ─── RESPONSIVE ─── */
-    /* ブレークポイントは この順序 で記述すること。
-       1〜3 は同一詳細度で範囲が重なるため、トークンの解決がソース順に依存する。 */
-
-    /* ─── TABLET (768-1024px) ─── */
-    @media (max-width: 1024px) {
-      :root {
-        --pad-x: 40px;
-        --header-pad-x: 32px;
-      }
-    }
-
-    /* ─── MOBILE (~767px) ─── */
     @media (max-width: 767px) {
-      :root {
-        --pad-x: 20px;
-        --header-pad-x: 20px;
-        --header-h: 56px;
-      }
-
-      /* ヘッダー */
-      .site-header .logo {
-        font-size: 12px;
-      }
-
-      .site-header nav {
-        gap: 20px;
-      }
-
-      [data-js="1"] .nav-toggle {
-        display: inline-flex;
-        width: 44px;
-        height: 44px;
-        align-items: center;
-        justify-content: center;
-      }
-
-      [data-js="1"] .site-header nav {
-        display: none;
-      }
-
-      [data-js="1"] .site-header.is-open nav {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: var(--header-h);
-        left: 0;
-        right: 0;
-        gap: 0;
-        padding: 4px var(--header-pad-x) 12px;
-        background: var(--white);
-        border-bottom: 1px solid var(--border);
-        max-height: calc(100vh - var(--header-h));
-        max-height: calc(100svh - var(--header-h));
-        overflow-y: auto;
-      }
-
-      [data-js="1"] .site-header.is-open nav a {
-        display: flex;
-        align-items: center;
-        min-height: 44px;
-      }
-
-      /* JS無効時のフォールバック: nav だけでなく .site-header 自身も折り返す必要がある */
-      html:not([data-js="1"]) .site-header {
-        flex-wrap: wrap;
-      }
-
-      html:not([data-js="1"]) .site-header nav {
-        flex-wrap: wrap;
-      }
-
-      /* セクション */
-      .section {
-        padding: 72px var(--pad-x);
-      }
-
-      footer {
-        padding: 48px var(--pad-x) 32px;
-      }
-
-      /* フッター */
-      .footer-inner {
-        flex-direction: column;
-      }
-
-      .footer-sns {
-        align-items: flex-start;
-      }
-
-      .footer-sns a {
-        display: inline-flex;
-        align-items: center;
-        min-height: 44px;
-      }
-
-      .footer-copy-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-      }
-    }
-
-    /* ─── SMALL PHONE (~374px) ─── */
-    @media (max-width: 374px) {
-      :root {
-        --pad-x: 16px;
-        --header-pad-x: 16px;
+      .policy-wrap {
+        padding: var(--s-6) var(--s-5);
       }
     }
   </style>
+
 </head>
 
 <body>
 
-  <!-- ─── HEADER ─── -->
   <header class="site-header">
-    <a class="logo" href="index.html">Local Impact Design飯南株式会社</a>
+    <a class="logo" href="./">
+      <img class="logo-mark" src="images/logo-mark.png" alt="" width="32" height="36">
+      <span>Local Impact Design 飯南</span>
+    </a>
     <nav id="site-nav">
-      <a href="index.html#news">ニュース</a>
-      <a href="index.html#reports">活動レポート</a>
-      <a href="index.html#about">取組について</a>
-      <a href="index.html#recruit">募集情報</a>
-      <a href="contact.html">お問い合わせ</a>
+      <a href="about.html">企業情報</a>
+      <a href="service.html">サービス</a>
+      <a href="member.html">メンバー</a>
+      <a href="reports.html">活動レポート</a>
+      <a href="recruit.html">募集情報</a>
+      <a class="nav-external" href="https://farm.lid-iinan.com/" target="_blank" rel="noopener noreferrer">
+        FARM
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 4h6v6M20 4L10 14M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" />
+        </svg>
+        <span class="visually-hidden">（別サイトが新しいタブで開きます）</span>
+      </a>
+      <a class="nav-cta" href="contact.html">お問い合わせ</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false"
       aria-label="メニューを開く">
-      <span></span>
-      <span></span>
-      <span></span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
     </button>
   </header>
-
   <!-- ─── プライバシーポリシー ─── -->
   <div class="section">
     <div class="policy-wrap">
@@ -529,66 +245,51 @@
     </div>
   </div>
 
-  <!-- ─── FOOTER ─── -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <p class="name">Local Impact Design 飯南株式会社</p>
-        <p class="addr">
+  <div class="section" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="contact-cta">
+        <div>
+          <h2>個人情報の取り扱いについて</h2>
+          <p>ご不明な点がありましたら、お問い合わせ窓口までご連絡ください。</p>
+          <p style="margin-top:12px;">
+            <a class="contact-tel-link" href="tel:0854623122">0854-62-3122</a><br>
+            <small style="color:var(--ink-subtle);">平日 9:00〜17:00</small>
+          </p>
+        </div>
+        <div class="btn-row">
+          <a class="btn-primary" href="contact.html">お問い合わせ</a>
+          <a class="btn-outline" href="./">トップページへ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>
+        <p class="footer-name">Local Impact Design 飯南株式会社</p>
+        <address>
           〒690-3513 島根県飯石郡飯南町下赤名830番地<br>
-          代表取締役社長 小西 未祐<br>
-          代表取締役副社長/プロジェクトリーダー 赤藤 昭彦
-        </p>
+          TEL <a href="tel:0854623122">0854-62-3122</a>（平日 9:00〜17:00）
+        </address>
       </div>
-      <div class="footer-sns">
-        <!-- ★ 実際のSNSアカウントURLに差し替えてください -->
-        <a href="#" target="_blank" rel="noopener">↗ Instagram（現在準備中です）</a>
-        <a href="#" target="_blank" rel="noopener">↗ X (Twitter)（現在準備中です）</a>
+      <div class="footer-links">
+        <ul>
+          <li><a href="about.html">企業情報</a></li>
+          <li><a href="service.html">サービス</a></li>
+          <li><a href="member.html">メンバー</a></li>
+        </ul>
+        <ul>
+          <li><a href="reports.html">活動レポート</a></li>
+          <li><a href="recruit.html">募集情報</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+          <li><a href="policy.html">プライバシーポリシー</a></li>
+          <li><a href="terms.html">利用規約</a></li>
+        </ul>
       </div>
     </div>
-    <div class="footer-copy-row">
-      <p class="footer-copy">&copy; 2026 Local Impact Design 飯南株式会社. All Rights Reserved.</p>
-      <p class="footer-legal"><a href="policy.html">プライバシーポリシー</a></p>
-    </div>
+    <p class="footer-copy">© 2026 Local Impact Design飯南株式会社 All right reserved.</p>
   </footer>
-
-  <script>
-    // ─── モバイルナビ（折りたたみ） ───
-    function initMobileNav() {
-      const header = document.querySelector('.site-header');
-      const btn = document.getElementById('nav-toggle');
-      const nav = document.getElementById('site-nav');
-      if (!header || !btn || !nav) return;
-
-      function setOpen(open) {
-        header.classList.toggle('is-open', open);
-        btn.setAttribute('aria-expanded', String(open));
-        btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-      }
-
-      btn.addEventListener('click', () => {
-        setOpen(btn.getAttribute('aria-expanded') !== 'true');
-      });
-
-      nav.addEventListener('click', (e) => {
-        if (e.target.closest('a')) setOpen(false);
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
-          setOpen(false);
-          btn.focus();
-        }
-      });
-
-      const mql = window.matchMedia('(min-width: 768px)');
-      mql.addEventListener('change', (e) => {
-        if (e.matches) setOpen(false);
-      });
-    }
-
-    initMobileNav();
-  </script>
 
 </body>
 
