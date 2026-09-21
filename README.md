@@ -1,5 +1,19 @@
 # https://lid-iinan.com
 
+Local Impact Design飯南株式会社のウェブサイト。
+ビルド工程を持たない静的HTMLサイトで、GitHub Pages で公開しています。
+
+## 各種手順
+
+| やりたいこと | 参照先 |
+|---|---|
+| **活動レポートを追加する** | [docs/レポートの追加手順.md](docs/レポートの追加手順.md) |
+| タグを追加・変更する | [docs/レポートの追加手順.md#タグについて](docs/レポートの追加手順.md#タグについて) |
+| 画像を縮小する | `./scripts/optimize-images.py --apply` |
+| 画像サイズの目安を知る | [images/README.md](images/README.md) |
+| 問い合わせフォームを設定する | 下記「問い合わせフォーム設定」 |
+| ドメインを切り替える | 下記「ドメイン設定」 |
+
 ## 問い合わせフォーム設定
 
 問い合わせフォームは **Google reCAPTCHA v2（チェックボックス）** と **Formspree** を使用しています。
