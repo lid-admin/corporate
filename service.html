@@ -37,19 +37,19 @@
 
   <style>
     /* ─── サービスページ固有 ─── */
-    .service-card .icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 56px;
-      height: 56px;
-      border-radius: var(--r-icon);
-      background: var(--moss-soft);
-      margin-bottom: var(--s-5);
+    /* 旧サイトから引き継いだイラスト。透過PNGをカードの面の色に合成したJPEGなので、
+       背景色（--surface）を変える場合は画像も作り直すこと */
+    .service-illust {
+      margin: calc(var(--s-2) * -1) auto var(--s-4);
+      width: 100%;
+      max-width: 240px;
     }
 
-    .service-card.kaki .icon {
-      background: var(--kaki-soft);
+    .service-illust img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
     }
 
     .service-card .en {
@@ -132,14 +132,11 @@
       <div class="card-grid cols-2">
 
         <div class="card service-card" data-area="IT">
-          <span class="icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#55682F" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="13" rx="2" />
-              <path d="M8 21h8M12 17v4" />
-            </svg>
-          </span>
-          <span class="en">IT</span>
+          <figure class="service-illust">
+            <img src="images/service-it.jpg" alt="ノートパソコンを手に大きなモニターの前に立つ人のイラスト" width="480" height="480" loading="lazy"
+              onerror="this.onerror=null;this.src='images/placeholder.svg'">
+          </figure>
+          <span class="en">DIGITAL</span>
           <h3>IT</h3>
           <p>業務提供しているLULL社の学習支援のもと、ITスキルを習得し、地域課題の解決につながるデジタル活用を推進します。</p>
           <p style="margin-top:var(--s-4);">子どもたちへのIT教育やプログラミング体験を通じて、次世代の担い手を育てる取り組みにも力を入れています。</p>
@@ -147,13 +144,10 @@
         </div>
 
         <div class="card service-card kaki" data-area="観光">
-          <span class="icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8F4322" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 20l6-16 6 16" />
-              <path d="M13 12l4-6 4 14" />
-            </svg>
-          </span>
+          <figure class="service-illust">
+            <img src="images/service-kanko.jpg" alt="道標の立つ山道を歩くハイカー2人のイラスト" width="480" height="480" loading="lazy"
+              onerror="this.onerror=null;this.src='images/placeholder.svg'">
+          </figure>
           <span class="en">TOURISM</span>
           <h3>観光</h3>
           <p>地域の魅力を発信するため、イベント運営や情報発信、観光コンテンツの企画など、観光事業全般を支援しています。</p>
@@ -162,14 +156,10 @@
         </div>
 
         <div class="card service-card" data-area="農業">
-          <span class="icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#55682F" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21V9" />
-              <path d="M12 9c0-3 2-6 6-6 0 4-3 6-6 6z" />
-              <path d="M12 13c0-3-2-5-5-5 0 3 2 5 5 5z" />
-            </svg>
-          </span>
+          <figure class="service-illust">
+            <img src="images/service-nogyo.jpg" alt="野菜畑で作業する2人のイラスト" width="480" height="480" loading="lazy"
+              onerror="this.onerror=null;this.src='images/placeholder.svg'">
+          </figure>
           <span class="en">AGRICULTURE</span>
           <h3>農業</h3>
           <p>農作物の植え付けや収穫などの農作業をはじめ、販売経路の確保や地域農業の活性化に向けた取り組みを支援します。</p>
@@ -177,12 +167,10 @@
         </div>
 
         <div class="card service-card kaki" data-area="保育・福祉">
-          <span class="icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8F4322" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 20s-7-4.3-7-9a4 4 0 017-2.6A4 4 0 0119 11c0 4.7-7 9-7 9z" />
-            </svg>
-          </span>
+          <figure class="service-illust">
+            <img src="images/service-care.jpg" alt="積み重ねた本の上に座る子ども2人のイラスト" width="480" height="480" loading="lazy"
+              onerror="this.onerror=null;this.src='images/placeholder.svg'">
+          </figure>
           <span class="en">CARE</span>
           <h3>保育・福祉</h3>
           <p>地域の子どもたちの成長や高齢者の安心した暮らしを支えるため、町内の保育機関や地域団体と連携し、支援活動を推進しています。</p>

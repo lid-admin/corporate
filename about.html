@@ -43,12 +43,72 @@
       color: var(--ink-muted);
     }
 
+    /* 読ませる本文は16px（カード内の既定14pxより大きく） */
+    .prose p {
+      font-size: var(--t-base);
+      line-height: 2;
+    }
+
     .lead-statement {
       font-family: var(--font-display);
       font-size: clamp(22px, 2.8vw, 30px);
       line-height: 1.6;
       color: var(--ink);
       margin: 0 0 var(--s-6);
+      /* 日本語を文節の切れ目で折り返し、行の長さを揃える */
+      word-break: auto-phrase;
+      text-wrap: balance;
+    }
+
+    /* 途中で割りたくない語句をひとかたまりにする */
+    .nobr {
+      white-space: nowrap;
+    }
+
+    /* 狭い画面では手動の改行を外す。
+       画面幅による折り返しと重なると「は、」だけが1行に取り残されるため */
+    @media (max-width: 599px) {
+      .lead-statement br {
+        display: none;
+      }
+    }
+
+    /* 代表メッセージ。写真と本文を左右に並べる */
+    .message-card {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: var(--s-7);
+      align-items: start;
+      padding: var(--s-7);
+    }
+
+    .message-photo {
+      margin: 0;
+      position: sticky;
+      top: calc(var(--header-h) + var(--s-5));
+    }
+
+    .message-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: var(--r-card);
+      background: var(--moss-soft);
+    }
+
+    @media (max-width: 899px) {
+      .message-card {
+        grid-template-columns: 1fr;
+        gap: var(--s-5);
+        padding: var(--s-6) var(--s-5);
+      }
+
+      .message-photo {
+        position: static;
+        max-width: 360px;
+      }
     }
 
     .mvv-item .label {
@@ -220,9 +280,15 @@
   <!-- ─── メッセージ ─── -->
   <div class="section" style="padding-top:0;">
     <div class="section-inner">
-      <div class="card" style="padding: var(--s-8) var(--s-7);">
+      <div class="card message-card">
+        <figure class="message-photo">
+          <img src="images/representative.jpg" alt="Local Impact Design飯南の事務所前に立つ代表者"
+            width="880" height="1100" loading="lazy"
+            onerror="this.onerror=null;this.src='images/placeholder.svg'">
+        </figure>
+        <div class="message-body">
         <p class="section-label">MESSAGE</p>
-        <p class="lead-statement">地方移住の「なんとかなる」は、<br>もう終わりにしよう。</p>
+        <p class="lead-statement">地方移住の<span class="nobr">「なんとかなる」は、</span><br>もう終わりにしよう。</p>
         <div class="prose">
           <p>個人の「覚悟」や「偶然」に依存する従来の移住の形を変革します。</p>
           <p>私たちが提案するのは、ITなどの『都市の仕事』と農業などの『田舎の風景』を守る活動を掛け合わせた「ハイブリッド・ワーク」です。</p>
@@ -230,6 +296,7 @@
           <p>これからの地域おこし協力隊は、単なる「お手伝い」ではありません。</p>
           <p>地域の事業者様の未来を共に描き、デジタルの力で事業をアップデートする「戦略的パートナー」として、3年後に地域に根付く人財を目指します。</p>
           <p>飯南町から、あなたらしい「現場での一歩」を一緒に踏み出してみませんか？</p>
+        </div>
         </div>
       </div>
     </div>

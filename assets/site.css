@@ -586,11 +586,14 @@ dd {
   box-shadow: var(--shadow-card);
 }
 
-.card h3 {
+/* カード内の既定値。:where() で詳細度を 0 に落とし、
+   .lead-statement や .section-label などのクラス指定が必ず勝つようにする。
+   （.card p のままだとクラス1＋要素1で、クラス単体の指定を上書きしてしまう） */
+:where(.card) h3 {
   margin-bottom: var(--s-3);
 }
 
-.card p {
+:where(.card) p {
   font-size: 14px;
   line-height: 1.95;
   color: var(--ink-muted);

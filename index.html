@@ -175,19 +175,14 @@
       box-shadow: var(--shadow-card);
     }
 
-    .service-brief-item .icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 52px;
-      height: 52px;
-      border-radius: var(--r-icon);
-      background: var(--moss-soft);
-      margin-bottom: var(--s-5);
-    }
-
-    .service-brief-item.kaki .icon {
-      background: var(--kaki-soft);
+    /* サービスページと同じイラストを使う。カードの面の色に合成済みのJPEG */
+    .service-brief-item .brief-illust {
+      display: block;
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      margin: calc(var(--s-3) * -1) auto var(--s-3);
     }
 
     .service-brief-item h3 {
@@ -444,46 +439,26 @@
       </div>
       <div class="service-brief">
         <div class="service-brief-item">
-          <span class="icon" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#55682F" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="13" rx="2" />
-              <path d="M8 21h8M12 17v4" />
-            </svg>
-          </span>
+          <img class="brief-illust" src="images/service-it.jpg" alt="ノートパソコンを手に大きなモニターの前に立つ人のイラスト" width="480" height="480"
+            loading="lazy" onerror="this.onerror=null;this.src='images/placeholder.svg'">
           <h3>IT</h3>
           <p>ITスキルを習得し、地域課題の解決につながるデジタル活用を進めます。</p>
         </div>
         <div class="service-brief-item kaki">
-          <span class="icon" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8F4322" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 20l6-16 6 16" />
-              <path d="M13 12l4-6 4 14" />
-            </svg>
-          </span>
+          <img class="brief-illust" src="images/service-kanko.jpg" alt="道標の立つ山道を歩くハイカー2人のイラスト" width="480" height="480"
+            loading="lazy" onerror="this.onerror=null;this.src='images/placeholder.svg'">
           <h3>観光</h3>
           <p>イベント運営、情報発信、観光コンテンツの企画。町の魅力を外へ届けます。</p>
         </div>
         <div class="service-brief-item">
-          <span class="icon" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#55682F" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21V9" />
-              <path d="M12 9c0-3 2-6 6-6 0 4-3 6-6 6z" />
-              <path d="M12 13c0-3-2-5-5-5 0 3 2 5 5 5z" />
-            </svg>
-          </span>
+          <img class="brief-illust" src="images/service-nogyo.jpg" alt="野菜畑で作業する2人のイラスト" width="480" height="480"
+            loading="lazy" onerror="this.onerror=null;this.src='images/placeholder.svg'">
           <h3>農業</h3>
           <p>植え付けや収穫などの農作業支援と、販売経路の確保を支えます。</p>
         </div>
         <div class="service-brief-item kaki">
-          <span class="icon" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8F4322" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 20s-7-4.3-7-9a4 4 0 017-2.6A4 4 0 0119 11c0 4.7-7 9-7 9z" />
-            </svg>
-          </span>
+          <img class="brief-illust" src="images/service-care.jpg" alt="積み重ねた本の上に座る子ども2人のイラスト" width="480" height="480"
+            loading="lazy" onerror="this.onerror=null;this.src='images/placeholder.svg'">
           <h3>保育・福祉</h3>
           <p>町内の保育機関や地域団体と連携し、子どもと高齢者の暮らしを支えます。</p>
         </div>
