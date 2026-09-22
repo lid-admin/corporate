@@ -56,6 +56,19 @@
     return document.documentElement.getAttribute('data-root') || './';
   }
 
+  /* データ内の「/pages/report.html?id=16」のようなサイト内パスを、実際の配信位置に合わせて読み替える。
+     ドメイン直下（lid-iinan.com/）でも、サブディレクトリ（lid-admin.github.io/corporate/）でも
+     正しい場所を指すようにするため。
+     ・「/」1つで始まるサイト内パス → 先頭の「/」を外し root() を前に付ける
+     ・https:// などの外部URL、「//」始まり、空文字 → そのまま返す */
+  function siteUrl(path) {
+    var p = String(path == null ? '' : path);
+    if (p.charAt(0) === '/' && p.charAt(1) !== '/') {
+      return root() + p.slice(1);
+    }
+    return p;
+  }
+
   function fetchJSON(relPath) {
     return fetch(root() + relPath).then(function (res) {
       if (!res.ok) throw new Error('fetch failed: ' + relPath + ' (' + res.status + ')');
@@ -344,6 +357,7 @@
     tagsOfArea: tagsOfArea,
     unknownTags: unknownTags,
     root: root,
+    siteUrl: siteUrl,
     fetchJSON: fetchJSON,
     escapeHtml: escapeHtml,
     formatDate: formatDate,

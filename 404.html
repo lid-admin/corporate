@@ -3,6 +3,23 @@
 
 <head>
   <meta charset="UTF-8">
+  <script>
+    // 404.html は、存在しないURLに対して「どの階層でも」同じものが返される。
+    // /corporate/foo/bar のような深いURLだと相対パスがその階層からずれ、CSSや画像が読めなくなる。
+    // そこで <base> でサイトの起点を固定する。必ず href/src を持つ要素より前に置くこと。
+    //   lid-iinan.com/…                → /
+    //   lid-admin.github.io/corporate/… → /corporate/
+    (function () {
+      var root = '/';
+      if (/\.github\.io$/.test(location.hostname)) {
+        var first = location.pathname.split('/')[1];
+        if (first) root = '/' + first + '/';
+      }
+      var base = document.createElement('base');
+      base.href = root;
+      document.head.appendChild(base);
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>document.documentElement.dataset.js = '1';</script>
   <title>ページが見つかりません | Local Impact Design飯南株式会社</title>
@@ -20,7 +37,7 @@
   <meta name="twitter:title" content="ページが見つかりません | Local Impact Design飯南株式会社">
   <meta name="twitter:description" content="お探しのページは見つかりませんでした。">
   <meta name="twitter:image" content="https://lid-iinan.com/images/hero.jpg">
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -23,7 +23,7 @@
   <meta name="twitter:title" content="飯南町 地域おこし協力隊 活動報告 | Local Impact Design飯南">
   <meta name="twitter:description" content="島根県飯石郡飯南町でLocal Impact Design飯南株式会社が受け入れる地域おこし協力隊の活動記録。">
   <meta name="twitter:image" content="https://lid-iinan.com/images/hero.jpg">
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -635,7 +635,8 @@
               + '<span class="visually-hidden">（別サイトが新しいタブで開きます）</span>'
             : '';
 
-          return `<a class="news-item" href="${LID.escapeHtml(url)}"${attrs}>
+          // /pages/... のようなサイト内パスは、配信位置に合わせて読み替える
+          return `<a class="news-item" href="${LID.escapeHtml(LID.siteUrl(url))}"${attrs}>
             <span class="news-date">${date}</span>
             <span class="news-title">${title}${icon}</span>
           </a>`;

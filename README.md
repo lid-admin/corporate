@@ -122,8 +122,17 @@ grep -rl 'https://lid-iinan\.com' --include='*.html' --include='*.xml' --include
   | xargs sed -i '' 's|https://lid-iinan\.com|https://新しいドメイン|g'
 ```
 
-### 注意
+### 配信位置について
 
-- ルート絶対パスを使っている箇所がある（`/favicon.ico` が11ページ、旧URL転送の遷移先が6本）。
-  **ドメインのルートで配信されることが前提**。サブディレクトリ配信（`example.github.io/report/` など）では動かない。
-- `data/news.json` の `url` も `/pages/report.html?id=N` の形式で同じ前提。
+ドメイン直下（`lid-iinan.com/`）でも、サブディレクトリ（`lid-admin.github.io/corporate/`）でも
+動くように、サイト内のリンクはすべて相対パスで書いている。
+
+- **新しく書くリンクは `/` から始めないこと**（`about.html` や `../about.html` のように書く）。
+  `/about.html` と書くと、サブディレクトリ配信のときにサイトの外を指してしまう
+- `data/news.json` の `url` は `/pages/report.html?id=N` と書いてよい。
+  表示するときに、配信位置に合わせて読み替えている（`assets/site.js` の `LID.siteUrl()`）
+- `404.html` は、どの階層のURLで表示されても崩れないよう、`<base>` でサイトの起点を固定している
+
+**OGP画像（SNSでURLを共有したときの画像）はドメイン設定後に表示される。**
+`og:image` は `https://lid-iinan.com/images/hero.jpg` を指しており、SNSのプレビューは
+JavaScriptを実行しないため、配信位置に合わせた読み替えができない。
