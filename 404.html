@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja" data-root="./">
+
+<head>
+  <meta charset="UTF-8">
+  <script>
+    // 404.html は、存在しないURLに対して「どの階層でも」同じものが返される。
+    // /corporate/foo/bar のような深いURLだと相対パスがその階層からずれ、CSSや画像が読めなくなる。
+    // そこで <base> でサイトの起点を固定する。必ず href/src を持つ要素より前に置くこと。
+    //   lid-iinan.com/…                → /
+    //   lid-admin.github.io/corporate/… → /corporate/
+    (function () {
+      var root = '/';
+      if (/\.github\.io$/.test(location.hostname)) {
+        var first = location.pathname.split('/')[1];
+        if (first) root = '/' + first + '/';
+      }
+      var base = document.createElement('base');
+      base.href = root;
+      document.head.appendChild(base);
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.dataset.js = '1';</script>
+  <title>ページが見つかりません | Local Impact Design飯南株式会社</title>
+  <meta name="description" content="お探しのページは見つかりませんでした。">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://lid-iinan.com/404.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ページが見つかりません | Local Impact Design飯南株式会社">
+  <meta property="og:description" content="お探しのページは見つかりませんでした。">
+  <meta property="og:url" content="https://lid-iinan.com/404.html">
+  <meta property="og:image" content="https://lid-iinan.com/images/hero.jpg">
+  <meta property="og:site_name" content="Local Impact Design飯南株式会社">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ページが見つかりません | Local Impact Design飯南株式会社">
+  <meta name="twitter:description" content="お探しのページは見つかりませんでした。">
+  <meta name="twitter:image" content="https://lid-iinan.com/images/hero.jpg">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN5W7RS079"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WN5W7RS079');
+  </script>
+  <script defer src="assets/site.js"></script>
+
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="./">
+      <img class="logo-mark" src="images/logo-mark.png" alt="" width="32" height="36">
+      <span>Local Impact Design 飯南</span>
+    </a>
+    <nav id="site-nav">
+      <a href="about.html">企業情報</a>
+      <a href="service.html">サービス</a>
+      <a href="member.html">メンバー</a>
+      <a href="reports.html">活動レポート</a>
+      <a href="recruit.html">募集情報</a>
+      <a class="nav-external" href="https://farm.lid-iinan.com/" target="_blank" rel="noopener noreferrer">
+        FARM
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 4h6v6M20 4L10 14M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" />
+        </svg>
+        <span class="visually-hidden">（別サイトが新しいタブで開きます）</span>
+      </a>
+      <a class="nav-cta" href="contact.html">お問い合わせ</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false"
+      aria-label="メニューを開く">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
+    </button>
+  </header>
+
+  <div class="page-hero">
+    <p class="section-label">404 NOT FOUND</p>
+    <h1>お探しのページは見つかりませんでした</h1>
+    <p class="lead">URLが変更されたか、削除された可能性があります。<br>お手数ですが、以下のページからお探しください。</p>
+    <div class="btn-row" style="justify-content:center; margin-top:var(--s-6);">
+      <a class="btn-primary" href="./">トップページへ</a>
+      <a class="btn-outline" href="reports.html">活動レポート一覧</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="card-grid cols-3">
+        <a class="card" href="about.html" style="text-decoration:none;">
+          <h3>企業情報</h3>
+          <p>理念と働き方の仕組みをご紹介します。</p>
+        </a>
+        <a class="card" href="service.html" style="text-decoration:none;">
+          <h3>サービス</h3>
+          <p>IT・観光・農業・保育・福祉の4分野の取り組み。</p>
+        </a>
+        <a class="card" href="member.html" style="text-decoration:none;">
+          <h3>メンバー</h3>
+          <p>飯南町で活動しているメンバーの紹介。</p>
+        </a>
+        <a class="card" href="reports.html" style="text-decoration:none;">
+          <h3>活動レポート</h3>
+          <p>日々の活動記録をタグ別にご覧いただけます。</p>
+        </a>
+        <a class="card" href="recruit.html" style="text-decoration:none;">
+          <h3>募集情報</h3>
+          <p>協力隊員の募集要項と、事業者の方へのご案内。</p>
+        </a>
+        <a class="card" href="contact.html" style="text-decoration:none;">
+          <h3>お問い合わせ</h3>
+          <p>お問い合わせフォームと会社概要。</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="contact-cta">
+        <div>
+          <h2>お探しの情報が見つからない場合</h2>
+          <p>お電話またはお問い合わせフォームからご連絡ください。</p>
+          <p style="margin-top:12px;">
+            <a class="contact-tel-link" href="tel:0854623122">0854-62-3122</a><br>
+            <small style="color:var(--ink-subtle);">平日 9:00〜17:00</small>
+          </p>
+        </div>
+        <div class="btn-row">
+          <a class="btn-primary" href="contact.html">お問い合わせ</a>
+          <a class="btn-outline" href="./">トップページへ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>
+        <p class="footer-name">Local Impact Design 飯南株式会社</p>
+        <address>
+          〒690-3513 島根県飯石郡飯南町下赤名830番地<br>
+          TEL <a href="tel:0854623122">0854-62-3122</a>（平日 9:00〜17:00）
+        </address>
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li><a href="about.html">企業情報</a></li>
+          <li><a href="service.html">サービス</a></li>
+          <li><a href="member.html">メンバー</a></li>
+        </ul>
+        <ul>
+          <li><a href="reports.html">活動レポート</a></li>
+          <li><a href="recruit.html">募集情報</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+          <li><a href="policy.html">プライバシーポリシー</a></li>
+          <li><a href="terms.html">利用規約</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 Local Impact Design飯南株式会社 All right reserved.</p>
+  </footer>
+
+</body>
+
+</html>

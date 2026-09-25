@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja" data-root="./">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.dataset.js = '1';</script>
+  <title>企業情報 | Local Impact Design飯南株式会社</title>
+  <meta name="description" content="Local Impact Design飯南株式会社の理念と働き方。「地方創生2.0」を実装する実行部隊として、午前は地域活動・午後はIT学習というハイブリッドな働き方に取り組んでいます。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lid-iinan.com/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="企業情報 | Local Impact Design飯南株式会社">
+  <meta property="og:description" content="「地方創生2.0」を実装する実行部隊。午前は地域活動、午後はIT学習というハイブリッドな働き方に取り組んでいます。">
+  <meta property="og:url" content="https://lid-iinan.com/about.html">
+  <meta property="og:image" content="https://lid-iinan.com/images/hero.jpg">
+  <meta property="og:site_name" content="Local Impact Design飯南株式会社">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="企業情報 | Local Impact Design飯南株式会社">
+  <meta name="twitter:description" content="「地方創生2.0」を実装する実行部隊。午前は地域活動、午後はIT学習というハイブリッドな働き方に取り組んでいます。">
+  <meta name="twitter:image" content="https://lid-iinan.com/images/hero.jpg">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN5W7RS079"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WN5W7RS079');
+  </script>
+  <script defer src="assets/site.js"></script>
+
+  <style>
+    /* ─── 企業情報ページ固有 ─── */
+
+    /* 行長は制限しない。上のカード群が横幅いっぱいに並ぶため、
+       本文だけ途中で折り返すと右側が不自然に空く */
+    .prose {
+      color: var(--ink-muted);
+    }
+
+    /* 読ませる本文は16px（カード内の既定14pxより大きく） */
+    .prose p {
+      font-size: var(--t-base);
+      line-height: 2;
+    }
+
+    /* 最終行に1〜2文字だけ残るのを防ぐ。
+       word-break: auto-phrase は複数行の本文だと右端がガタガタになるため使わない */
+    .prose,
+    .prose p {
+      text-wrap: pretty;
+    }
+
+    .lead-statement {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.8vw, 30px);
+      line-height: 1.6;
+      color: var(--ink);
+      margin: 0 0 var(--s-6);
+      /* 日本語を文節の切れ目で折り返し、行の長さを揃える */
+      word-break: auto-phrase;
+      text-wrap: balance;
+    }
+
+    /* 途中で割りたくない語句をひとかたまりにする */
+    .nobr {
+      white-space: nowrap;
+    }
+
+    /* 狭い画面では手動の改行を外す。
+       画面幅による折り返しと重なると「は、」だけが1行に取り残されるため */
+    @media (max-width: 599px) {
+      .lead-statement br {
+        display: none;
+      }
+    }
+
+    /* 代表メッセージ。写真と本文を左右に並べる */
+    .message-card {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: var(--s-7);
+      align-items: start;
+      padding: var(--s-7);
+    }
+
+    .message-photo {
+      margin: 0;
+      position: sticky;
+      top: calc(var(--header-h) + var(--s-5));
+    }
+
+    .message-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: var(--r-card);
+      background: var(--moss-soft);
+    }
+
+    @media (max-width: 899px) {
+      .message-card {
+        grid-template-columns: 1fr;
+        gap: var(--s-5);
+        padding: var(--s-6) var(--s-5);
+      }
+
+      .message-photo {
+        position: static;
+        max-width: 360px;
+      }
+    }
+
+    .mvv-item .label {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: var(--t-sm);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--moss);
+      margin-bottom: var(--s-3);
+    }
+
+    .mvv-item h3 {
+      font-size: var(--t-lg);
+      margin: 0 0 var(--s-4);
+    }
+
+    .value-list {
+      list-style: none;
+      margin: var(--s-4) 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
+    }
+
+    .value-list li {
+      padding-left: var(--s-4);
+      border-left: 3px solid var(--moss-soft);
+    }
+
+    .value-list strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: var(--s-1);
+    }
+
+    .value-list p {
+      font-size: 14px;
+      line-height: 1.95;
+      color: var(--ink-muted);
+      margin: 0;
+    }
+
+    /* 二部制のタイムライン。
+       順序に意味があるため <ol>。装飾の縦線は ::before で描き、
+       読み上げ対象にしない。時間帯は色だけでなく時刻テキストでも示す。 */
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s-5);
+      position: relative;
+    }
+
+    .timeline-item {
+      position: relative;
+      background: var(--moss-soft);
+      border-radius: var(--r-card);
+      padding: var(--s-6) var(--s-5);
+    }
+
+    .timeline-item.pm {
+      background: var(--kaki-soft);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: var(--s-5);
+      top: 0;
+      width: 3px;
+      height: var(--s-5);
+      background: var(--moss);
+      border-radius: 0 0 2px 2px;
+    }
+
+    .timeline-item.pm::before {
+      background: var(--kaki-dark);
+    }
+
+    .timeline-time {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      font-family: var(--font-display);
+      font-size: var(--t-sm);
+      font-weight: 700;
+      color: var(--moss);
+      margin-bottom: var(--s-3);
+    }
+
+    .timeline-item.pm .timeline-time {
+      color: var(--kaki-dark);
+    }
+
+    .timeline-item h3 {
+      font-size: var(--t-lg);
+      margin: 0 0 var(--s-3);
+    }
+
+    .timeline-item p {
+      font-size: 14px;
+      line-height: 1.95;
+      color: var(--ink-muted);
+      margin: 0;
+    }
+
+    @media (max-width: 767px) {
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="./">
+      <img class="logo-mark" src="images/logo-mark.png" alt="" width="32" height="36">
+      <span>Local Impact Design 飯南</span>
+    </a>
+    <nav id="site-nav">
+      <a href="about.html" aria-current="page">企業情報</a>
+      <a href="service.html">サービス</a>
+      <a href="member.html">メンバー</a>
+      <a href="reports.html">活動レポート</a>
+      <a href="recruit.html">募集情報</a>
+      <a class="nav-external" href="https://farm.lid-iinan.com/" target="_blank" rel="noopener noreferrer">
+        FARM
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 4h6v6M20 4L10 14M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" />
+        </svg>
+        <span class="visually-hidden">（別サイトが新しいタブで開きます）</span>
+      </a>
+      <a class="nav-cta" href="contact.html">お問い合わせ</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false"
+      aria-label="メニューを開く">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
+    </button>
+  </header>
+
+  <div class="page-hero">
+    <p class="section-label">ABOUT US</p>
+    <h1>企業情報</h1>
+    <p class="lead">持続可能な地域づくりと、新しい移住のスタンダードを創るために。</p>
+  </div>
+
+  <!-- ─── LID飯南とは ─── -->
+  <div class="section">
+    <div class="section-inner">
+      <p class="section-label">WHO WE ARE</p>
+      <h2 class="section-title">LID飯南とは</h2>
+      <p class="lead-statement">「地方創生2.0」を実装する実行部隊</p>
+      <p class="prose">Local Impact Design（LID）飯南は、2026年4月に設立された、持続可能な地域づくりと新しい移住のスタンダードを創るためのプロジェクト牽引企業です。</p>
+    </div>
+  </div>
+
+  <!-- ─── メッセージ ─── -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="card message-card">
+        <figure class="message-photo">
+          <img src="images/representative.jpg" alt="Local Impact Design飯南の事務所前に立つ代表者"
+            width="880" height="1100" loading="lazy"
+            onerror="this.onerror=null;this.src='images/placeholder.svg'">
+        </figure>
+        <div class="message-body">
+        <p class="section-label">MESSAGE</p>
+        <p class="lead-statement">地方移住の<span class="nobr">「なんとかなる」は、</span><br>もう終わりにしよう。</p>
+        <div class="prose">
+          <p>個人の「覚悟」や「偶然」に依存する従来の移住の形を変革します。</p>
+          <p>私たちが提案するのは、ITなどの『都市の仕事』と農業などの『田舎の風景』を守る活動を掛け合わせた「ハイブリッド・ワーク」です。</p>
+          <p>月収約20万円のベース収入が最初から約束されているからこそ、焦らずに地域の伝統や農業を心から手伝うことができます。</p>
+          <p>これからの地域おこし協力隊は、単なる「お手伝い」ではありません。</p>
+          <p>地域の事業者様の未来を共に描き、デジタルの力で事業をアップデートする「戦略的パートナー」として、3年後に地域に根付く人財を目指します。</p>
+          <p>飯南町から、あなたらしい「現場での一歩」を一緒に踏み出してみませんか？</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 理念 ─── -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-inner">
+      <p class="section-label">OUR PHILOSOPHY</p>
+      <h2 class="section-title">私たちの理念</h2>
+      <p class="lead-statement">『都会の仕事』とのハイブリッド雇用が<br>『田舎の風景』を守る</p>
+
+      <div class="card-grid cols-3" style="margin-top: var(--s-6);">
+        <div class="card mvv-item">
+          <span class="label">Mission</span>
+          <h3>新しい移住のスタンダードを創る</h3>
+          <p>「地域協力活動」と「ITリスキリング」を掛け合わせ、安定した収入と安心を確約する「飯南町モデル」を提供します。</p>
+        </div>
+
+        <div class="card mvv-item">
+          <span class="label">Value</span>
+          <h3>3つの大切にすること</h3>
+          <ul class="value-list">
+            <li>
+              <strong>IT＝「優しさを形にした道具」</strong>
+              <p>高度な技術よりも、人々の声に耳を傾け、課題解決への道筋を描く「思いやり」と「つなぐ力」を大切にします。</p>
+            </li>
+            <li>
+              <strong>単なるお手伝いではなく「戦略的パートナー」になる</strong>
+              <p>ボランティア活動としてではなく、地域事業者様の未来を共に創り上げるパートナーとして伴走します。</p>
+            </li>
+            <li>
+              <strong>未来へ「繋ぐ仕組み」をつくる</strong>
+              <p>美しい風景の裏にある構造的課題に向き合い、あなたのアイディアとデジタルの力で、この町の「0」を豊かな「1」に変えていきます。</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card mvv-item">
+          <span class="label">Vision</span>
+          <h3>「余白（YOHAKU）」のある暮らしの実現</h3>
+          <p>『静かなデスクワーク』と『太陽の下での活動』を両立させることで、関わる人すべてに心と体を整える「余白」を育む社会を目指します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 働き方の仕組み ─── -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-inner">
+      <p class="section-label">HOW WE WORK</p>
+      <h2 class="section-title">働き方の仕組み</h2>
+      <p class="prose" style="margin-bottom: var(--s-6);">
+        当社では、「午前は地域活動、午後はIT学習」といったようなハイブリッドな働き方を取り入れています。
+      </p>
+
+      <ol class="timeline">
+        <li class="timeline-item am">
+          <span class="timeline-time">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4" />
+            </svg>
+            午前（おおよそ 9:00〜12:00）
+          </span>
+          <h3>地域の活動・現場業務</h3>
+          <p>地域の活動や現場業務に携わり、実践的な経験を積みながら地域産業を支えます。体を動かし、地域とのつながりを深める時間です。</p>
+        </li>
+        <li class="timeline-item pm">
+          <span class="timeline-time">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="13" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg>
+            午後（おおよそ 13:00〜17:00）
+          </span>
+          <h3>ITスキルの学習・デジタル業務</h3>
+          <p>ITスキルの学習やデジタル業務に取り組み、時代の変化に対応できる知識と技術を身につけます。将来の可能性を広げる時間です。</p>
+        </li>
+      </ol>
+
+      <div class="prose" style="margin-top: var(--s-6);">
+        <p>これはあくまで一例で、現場担当者と面談を重ね各自の活動内容が決まります。</p>
+        <p>この取り組みは、地域で働きながら新たなスキルを習得できることが大きな特徴です。また、異なる分野を経験することで柔軟な発想力や問題解決能力が養われ、多様な働き方に対応できる人材の育成にもつながります。</p>
+        <p>地域の仕事とデジタル人材育成を両立させる新しい挑戦として、一人ひとりの成長と地域活性化の実現を目指しています。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 末尾の導線 ─── -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="contact-cta">
+        <div>
+          <h2>この働き方に関心をお持ちの方へ</h2>
+          <p>募集情報をご覧いただくか、お気軽にお問い合わせください。</p>
+          <p style="margin-top:12px;">
+            <a class="contact-tel-link" href="tel:0854623122">0854-62-3122</a><br>
+            <small style="color:var(--ink-subtle);">平日 9:00〜17:00</small>
+          </p>
+        </div>
+        <div class="btn-row">
+          <a class="btn-primary" href="recruit.html">募集情報を見る</a>
+          <a class="btn-outline" href="contact.html">お問い合わせ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>
+        <p class="footer-name">Local Impact Design 飯南株式会社</p>
+        <address>
+          〒690-3513 島根県飯石郡飯南町下赤名830番地<br>
+          TEL <a href="tel:0854623122">0854-62-3122</a>（平日 9:00〜17:00）
+        </address>
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li><a href="about.html">企業情報</a></li>
+          <li><a href="service.html">サービス</a></li>
+          <li><a href="member.html">メンバー</a></li>
+        </ul>
+        <ul>
+          <li><a href="reports.html">活動レポート</a></li>
+          <li><a href="recruit.html">募集情報</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+          <li><a href="policy.html">プライバシーポリシー</a></li>
+          <li><a href="terms.html">利用規約</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 Local Impact Design飯南株式会社 All right reserved.</p>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# 編集ツールのみ除外する。
+# /data/ 全体を Disallow にしてはならない。全ページの中身を /data/*.json から
+# 実行時に取得しているため、塞ぐとクローラから見たページが空になる。
+Disallow: /data/report-editor.html
+
+Sitemap: https://lid-iinan.com/sitemap.xml
