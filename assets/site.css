@@ -1,0 +1,850 @@
+/* ============================================================
+   Local Impact Design飯南 — 全ページ共通スタイル
+   デザイン案B「里」
+   ------------------------------------------------------------
+   このファイルは全ページが読み込む。ページ固有のスタイル
+  （.timeline / .member-card / .filter-bar / .hero / .bento など）は
+   各ページの <style> に置く。1ページでしか使わないものを
+   ここに入れると、全ページが不要なCSSを読むことになるため。
+   ============================================================ */
+
+/* ─── デザイントークン ─── */
+:root {
+  /* 地と面 */
+  --ground: #F5EFE4;
+  /* ページ背景（生成り） */
+  --surface: #FFFCF6;
+  /* カード・ヘッダー・フッター */
+  --line: #D6C9B0;
+  /* 装飾的な罫線・破線のみ（コントラスト1.43。文字や操作部品の輪郭に使わない） */
+  --line-strong: #7D7259;
+  /* 入力欄など操作部品の境界（4.15 on ground。WCAG 1.4.11 の3:1を満たす） */
+
+  /* 文字 */
+  --ink: #2B2620;
+  /* 見出し・本文（13.10 on ground） */
+  --ink-muted: #4C4439;
+  /* 補足本文（8.37） */
+  --ink-subtle: #6B6153;
+  /* 日付などのメタ情報（5.30）。これより淡い文字色は定義しない */
+
+  /* アクセント：若草 */
+  --moss: #55682F;
+  /* 文字・面いずれも可（5.39 on ground / 白文字6.02） */
+  --moss-dark: #3C4A21;
+  --moss-soft: #E8EEDA;
+
+  /* アクセント：柿 */
+  --kaki: #B5562C;
+  /* 面のみ。白文字を載せる（4.73）。文字色に使うと4.24で不合格 */
+  --kaki-dark: #8F4322;
+  /* 柿系の文字色・ホバー（6.13 on ground） */
+  --kaki-soft: #F7E3D5;
+
+  /* 状態色・フォーカス */
+  --focus: var(--moss-dark);
+  --error: #A32B1E;
+  --error-soft: #F8E4E1;
+  --success: var(--moss-dark);
+
+  /* 角丸 */
+  --r-card: 24px;
+  --r-hero: 32px;
+  --r-icon: 16px;
+  --r-pill: 999px;
+
+  /* 余白（8pxグリッド） */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 80px;
+
+  /* 文字サイズ */
+  --t-xs: 12px;
+  --t-sm: 13px;
+  --t-base: 16px;
+  --t-lg: 20px;
+  --t-xl: 24px;
+  --t-2xl: 30px;
+  --t-3xl: 34px;
+  --t-hero: clamp(32px, 4.2vw, 54px);
+  --t-page-title: clamp(26px, 3.2vw, 34px);
+
+  /* 書体 */
+  --font-display: 'Zen Maru Gothic', 'Noto Sans JP', system-ui, sans-serif;
+  --font-body: 'Noto Sans JP', system-ui, sans-serif;
+
+  /* 影 */
+  --shadow-card: 0 1px 2px rgba(43, 38, 32, 0.04), 0 8px 24px rgba(43, 38, 32, 0.06);
+
+  /* レイアウト（旧トークンから引き継いだ可変値） */
+  --pad-x: 64px;
+  --header-pad-x: 40px;
+  --header-h: 72px;
+  --max-w: 1200px;
+}
+
+/* ─── リセット ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--t-base);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 0 0 var(--s-4);
+  color: var(--ink);
+}
+
+h1 {
+  font-size: var(--t-page-title);
+}
+
+h2 {
+  font-size: var(--t-2xl);
+}
+
+h3 {
+  font-size: var(--t-lg);
+}
+
+h4 {
+  font-size: var(--t-base);
+}
+
+p {
+  margin: 0 0 var(--s-4);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--moss);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--moss-dark);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+ol {
+  margin: 0 0 var(--s-4);
+  padding-left: 1.4em;
+}
+
+dl,
+dd {
+  margin: 0;
+}
+
+/* フォーカスリング。マウス操作時には出さないため :focus-visible を使う */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─── ヘッダー・ナビゲーション ─── */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  min-height: var(--header-h);
+  padding: 0 var(--header-pad-x);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.site-header .logo {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ロゴマーク。3倍解像度のPNGを縮小表示している（高DPIでも粗くならない） */
+.site-header .logo-mark {
+  display: block;
+  width: auto;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+
+  .site-header .logo-mark {
+    height: 32px;
+  }
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: var(--s-6);
+}
+
+.site-header nav a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-header nav a:hover {
+  color: var(--moss-dark);
+}
+
+/* 現在地。色だけに頼らず下線でも示す */
+.site-header nav a[aria-current="page"] {
+  color: var(--moss-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* 別サイトへのリンク。外部であることをアイコンで示す */
+.site-header nav a.nav-external {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.site-header nav a.nav-external svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.site-header nav a.nav-external:hover svg {
+  opacity: 1;
+}
+
+.site-header nav a.nav-cta {
+  padding: 11px 22px;
+  border-radius: var(--r-pill);
+  background: var(--kaki);
+  color: var(--surface);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-header nav a.nav-cta:hover {
+  background: var(--kaki-dark);
+  color: var(--surface);
+}
+
+.site-header nav a.nav-cta[aria-current="page"] {
+  background: var(--kaki-dark);
+  color: var(--surface);
+  text-decoration: none;
+}
+
+/* ハンバーガーボタン。JSが動くときだけ表示する（下の data-js 参照） */
+.nav-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle svg {
+  display: block;
+}
+
+@media (max-width: 767px) {
+
+  :root {
+    --pad-x: 20px;
+    --header-pad-x: 16px;
+    --header-h: 64px;
+  }
+}
+
+/* ナビの切り替えは 1024px 未満で行う。
+   ロゴ＋7項目を横並びにすると約980px必要なため、768pxまで横並びを続けると
+   タブレット幅（768〜1000px）でヘッダーが横にはみ出す。 */
+@media (max-width: 1023px) {
+
+  .site-header nav {
+    gap: var(--s-5);
+  }
+
+  /* JSが有効なときだけハンバーガー方式にする */
+  [data-js="1"] .nav-toggle {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-js="1"] .site-header nav {
+    display: none;
+  }
+
+  [data-js="1"] .site-header.is-open nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    gap: 0;
+    padding: var(--s-1) var(--header-pad-x) var(--s-3);
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    max-height: calc(100svh - var(--header-h));
+    overflow-y: auto;
+  }
+
+  [data-js="1"] .site-header.is-open nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  [data-js="1"] .site-header.is-open nav a.nav-cta {
+    justify-content: center;
+    margin-top: var(--s-2);
+  }
+
+  /* JS無効時のフォールバック。
+     ハンバーガーが動かないため、ナビを常時展開して折り返す。
+     nav だけでなく .site-header 自身も折り返す必要がある */
+  html:not([data-js="1"]) .site-header {
+    flex-wrap: wrap;
+    padding-top: var(--s-3);
+    padding-bottom: var(--s-3);
+  }
+
+  html:not([data-js="1"]) .site-header nav {
+    flex-wrap: wrap;
+    gap: var(--s-3) var(--s-4);
+  }
+}
+
+/* ─── フッター ─── */
+.site-footer {
+  background: var(--surface);
+  padding: var(--s-7) var(--pad-x) var(--s-6);
+}
+
+.site-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-7);
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.site-footer .footer-name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 var(--s-4);
+}
+
+.site-footer address {
+  font-style: normal;
+  font-size: var(--t-sm);
+  line-height: 1.9;
+  color: var(--ink-muted);
+}
+
+.site-footer address a {
+  color: var(--ink-muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--s-7);
+}
+
+.footer-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.footer-links a {
+  font-size: var(--t-sm);
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--moss-dark);
+  text-decoration: underline;
+}
+
+.footer-copy {
+  max-width: var(--max-w);
+  margin: var(--s-6) auto 0;
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+  font-size: var(--t-xs);
+  color: var(--ink-subtle);
+}
+
+@media (max-width: 767px) {
+
+  .site-footer-inner {
+    flex-direction: column;
+    gap: var(--s-6);
+  }
+
+  .footer-links {
+    gap: var(--s-6);
+  }
+}
+
+/* ─── セクション・見出し ─── */
+.section {
+  padding: var(--s-9) var(--pad-x);
+}
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: var(--t-sm);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--moss);
+  margin: 0 0 var(--s-2);
+}
+
+.section-title {
+  font-size: var(--t-3xl);
+  margin: 0 0 var(--s-5);
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-5);
+  margin-bottom: var(--s-6);
+  flex-wrap: wrap;
+}
+
+.section-head .section-title {
+  margin-bottom: 0;
+}
+
+/* ページ見出し（下層ページの先頭） */
+.page-hero {
+  background: var(--surface);
+  padding: var(--s-8) var(--pad-x);
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-size: var(--t-page-title);
+  margin: 0 0 var(--s-3);
+}
+
+.page-hero .lead {
+  max-width: 44em;
+  margin: 0 auto;
+  color: var(--ink-muted);
+}
+
+@media (max-width: 767px) {
+
+  .section {
+    padding: var(--s-7) var(--pad-x);
+  }
+
+  .page-hero {
+    padding: var(--s-7) var(--pad-x);
+  }
+}
+
+/* ─── ボタン ─── */
+.btn-primary,
+.btn-outline,
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+}
+
+/* 主要CTA。柿の面に白文字（4.73） */
+.btn-primary {
+  padding: var(--s-3) var(--s-7);
+  background: var(--kaki);
+  color: var(--surface);
+}
+
+.btn-primary:hover {
+  background: var(--kaki-dark);
+  color: var(--surface);
+}
+
+.btn-outline {
+  padding: var(--s-3) var(--s-7);
+  border: 2px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn-outline:hover {
+  border-color: var(--moss);
+  color: var(--moss-dark);
+}
+
+.btn-pill {
+  padding: var(--s-2) var(--s-5);
+  min-height: 40px;
+  border: 2px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-muted);
+  font-size: var(--t-sm);
+}
+
+.btn-pill:hover {
+  border-color: var(--moss);
+  color: var(--moss-dark);
+}
+
+.btn-pill.is-active {
+  background: var(--moss);
+  border-color: var(--moss);
+  color: var(--surface);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+/* ─── カード ─── */
+.card {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  padding: var(--s-6) var(--s-5);
+  box-shadow: var(--shadow-card);
+}
+
+/* カード内の既定値。:where() で詳細度を 0 に落とし、
+   .lead-statement や .section-label などのクラス指定が必ず勝つようにする。
+   （.card p のままだとクラス1＋要素1で、クラス単体の指定を上書きしてしまう） */
+:where(.card) h3 {
+  margin-bottom: var(--s-3);
+}
+
+:where(.card) p {
+  font-size: 14px;
+  line-height: 1.95;
+  color: var(--ink-muted);
+}
+
+.card-grid {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.card-grid.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card-grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card-grid.cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1023px) {
+
+  .card-grid.cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card-grid.cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+
+  .card-grid.cols-2,
+  .card-grid.cols-3,
+  .card-grid.cols-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── レポートカード ─── */
+.report-card {
+  display: block;
+  background: var(--surface);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease;
+}
+
+.report-card:hover {
+  transform: translateY(-2px);
+  color: var(--ink);
+}
+
+.report-card img {
+  display: block;
+  width: 100%;
+  height: 216px;
+  object-fit: cover;
+  background: var(--moss-soft);
+}
+
+.report-card .card-body {
+  padding: var(--s-5) var(--s-5) var(--s-6);
+}
+
+.report-card .card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-3);
+}
+
+.report-card .card-date {
+  font-size: var(--t-xs);
+  color: var(--ink-subtle);
+}
+
+.report-card h3 {
+  font-size: 18px;
+  line-height: 1.62;
+  margin: 0 0 var(--s-2);
+}
+
+.report-card p {
+  font-size: var(--t-sm);
+  line-height: 1.85;
+  color: var(--ink-muted);
+  margin: 0;
+}
+
+.report-card .card-link {
+  display: inline-block;
+  margin-top: var(--s-3);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  color: var(--moss);
+}
+
+/* featured は一覧の先頭で大きく見せる */
+.report-card.featured img {
+  height: 320px;
+}
+
+.report-card.featured h3 {
+  font-size: 22px;
+}
+
+@media (max-width: 767px) {
+
+  .report-card.featured img {
+    height: 216px;
+  }
+
+  .report-card.featured h3 {
+    font-size: 18px;
+  }
+}
+
+/* ─── タグ ─── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--s-1) var(--s-3);
+  border-radius: var(--r-pill);
+  background: var(--moss);
+  color: var(--surface);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+.tag.tag-kaki {
+  background: var(--kaki);
+}
+
+/* ─── 定義リスト ─── */
+.dl-row {
+  display: grid;
+  grid-template-columns: 9em 1fr;
+  gap: var(--s-4);
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.dl-row:last-child {
+  border-bottom: 0;
+}
+
+.dl-row dt {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.dl-row dd {
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+@media (max-width: 767px) {
+
+  .dl-row {
+    grid-template-columns: 1fr;
+    gap: var(--s-1);
+  }
+}
+
+/* ─── 通知（エラー・該当なし・読み込み中） ─── */
+.notice {
+  padding: var(--s-5);
+  border-radius: var(--r-icon);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink-muted);
+  font-size: 14px;
+}
+
+.notice.is-error {
+  border-color: var(--error);
+  background: var(--error-soft);
+  color: var(--error);
+}
+
+.notice a {
+  color: var(--kaki-dark);
+}
+
+.is-loading {
+  color: var(--ink-subtle);
+  font-size: 14px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ─── ページ末尾の問い合わせ導線 ─── */
+.contact-cta {
+  background: var(--surface);
+  border-radius: var(--r-hero);
+  padding: var(--s-7) var(--s-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  border: 2px dashed var(--line);
+  flex-wrap: wrap;
+}
+
+.contact-cta h2 {
+  font-size: var(--t-2xl);
+  margin: 0 0 var(--s-2);
+}
+
+.contact-cta p {
+  color: var(--ink-muted);
+  font-size: 15px;
+  margin: 0;
+}
+
+.contact-tel-link {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 700;
+  color: var(--kaki-dark);
+  text-decoration: none;
+}
+
+/* ─── 読み上げ専用 ─── */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

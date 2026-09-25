@@ -265,6 +265,8 @@
     .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
     .tag-select-wrap { position: relative; }
+    .tag-hint { margin: 6px 0 0; font-size: 11px; color: #6b7c69; line-height: 1.6; }
+    .tag-hint.is-warn { color: #a3371e; }
     .tag-select-wrap::after {
       content: '▾';
       position: absolute;
@@ -518,14 +520,9 @@
         <div class="tag-select-wrap">
           <select id="f-tag">
             <option value="">（なし）</option>
-            <option value="農業">農業</option>
-            <option value="観光">観光</option>
-            <option value="教育">教育</option>
-            <option value="イベント">イベント</option>
-            <option value="ITリスキリング">ITリスキリング</option>
-            <option value="その他">その他</option>
           </select>
         </div>
+        <p class="tag-hint" id="tag-hint">タグ一覧は data/tags.json から読み込みます。</p>
       </div>
       <div class="field">
         <label>著者</label>
@@ -612,6 +609,7 @@
         entries = data;
         renderList();
         renderJson();
+        if (!window.__tagNames) loadTagOptions();   // tags.json が読めなかった場合の再構築
         const badge = document.getElementById('loaded-badge');
         badge.textContent = `${entries.length} 件読み込み済み`;
         badge.style.display = 'inline';
@@ -838,6 +836,47 @@
   document.getElementById('f-id').value = 1;
 
   // ─── REALTIME AUTO SAVE ───
+  // ─── タグ設定の読み込み ───
+  // data/tags.json を唯一の情報源にする。この編集ツール内にタグ一覧を持たない
+  // （以前は固定の選択肢を持っていたため、実データとずれていた）。
+  async function loadTagOptions() {
+    const sel = document.getElementById('f-tag');
+    const hint = document.getElementById('tag-hint');
+    const keep = sel.value;
+
+    function fill(names, note, warn) {
+      sel.innerHTML = '<option value="">（なし）</option>' +
+        names.map(n => `<option value="${n}">${n}</option>`).join('');
+      if (keep) {
+        // 設定に無いタグが既に入っていた場合も、選択が消えないよう option を足す
+        if (names.indexOf(keep) === -1) {
+          sel.insertAdjacentHTML('beforeend', `<option value="${keep}">${keep}（設定外）</option>`);
+        }
+        sel.value = keep;
+      }
+      hint.textContent = note;
+      hint.classList.toggle('is-warn', !!warn);
+    }
+
+    try {
+      const res = await fetch('tags.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error(res.status);
+      const cfg = await res.json();
+      const names = (cfg.tags || []).map(t => t.name);
+      fill(names, `タグ ${names.length} 件を data/tags.json から読み込みました。`);
+      window.__tagNames = names;
+    } catch (err) {
+      // file:// で開いた場合など。読み込み済みデータのタグで代替する
+      const fromData = [...new Set(entries.map(e => e.tag).filter(Boolean))];
+      fill(fromData,
+        'tags.json を読み込めませんでした（ローカルサーバー経由で開くと読み込めます）。'
+        + '読み込み済みのレポートに使われているタグを表示しています。', true);
+      window.__tagNames = null;
+    }
+  }
+
+  loadTagOptions();
+
   ['f-date', 'f-tag', 'f-author', 'f-title', 'f-summary', 'f-body', 'f-image'].forEach(id => {
     const el = document.getElementById(id);
     el.addEventListener('input', autoSave);

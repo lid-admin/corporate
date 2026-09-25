@@ -1,3 +1,7 @@
 .DS_Store
 .claude
 .vscode
+
+# ロゴなどの Illustrator 原本は公開リポジトリに含めない（編集可能な原本のため）
+# サイトで使う画像は images/ に書き出したものを置く
+*.ai
