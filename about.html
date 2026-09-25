@@ -38,8 +38,9 @@
   <style>
     /* ─── 企業情報ページ固有 ─── */
 
+    /* 行長は制限しない。上のカード群が横幅いっぱいに並ぶため、
+       本文だけ途中で折り返すと右側が不自然に空く */
     .prose {
-      max-width: 42em;
       color: var(--ink-muted);
     }
 
@@ -47,6 +48,13 @@
     .prose p {
       font-size: var(--t-base);
       line-height: 2;
+    }
+
+    /* 最終行に1〜2文字だけ残るのを防ぐ。
+       word-break: auto-phrase は複数行の本文だと右端がガタガタになるため使わない */
+    .prose,
+    .prose p {
+      text-wrap: pretty;
     }
 
     .lead-statement {
