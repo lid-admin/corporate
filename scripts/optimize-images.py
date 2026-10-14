@@ -16,6 +16,8 @@ hero.jpg・ロゴ・ファビコン・メンバー写真などは対象外。
 - **処理済みの画像は再圧縮しない。** 寸法が変わらず削減もわずかなら据え置く。
   JPEG は保存し直すたびに数十バイト縮むが、そのたびに画質も落ちるため。
 - **確認が既定。** --apply を付けない限りファイルには触れない。
+- **拡張子は小文字にそろえる。** 16-1.JPG は 16-1.jpg に改名する（縮小しない画像も含む）。
+  同名の小文字ファイルが既にある場合は改名しない。
 
 必要なもの: Python 3 と Pillow（`python3 -m pip install Pillow`）。
 macOS 標準の sips でも縮小はできるが、JPEG の符号化が弱く、
@@ -40,6 +42,11 @@ REPORT_IMAGE = re.compile(r'^\d{1,3}-\d+\.(jpg|jpeg)$', re.IGNORECASE)
 
 def human(n):
     return f"{n / 1024:,.0f}KB" if n < 1024 * 1024 else f"{n / 1048576:.1f}MB"
+
+
+def lower_ext(name):
+    stem, ext = os.path.splitext(name)
+    return stem + ext.lower()
 
 
 def encode(img, quality):
@@ -91,17 +98,34 @@ def main():
     print("─" * 88)
 
     before_total = after_total = 0
-    n_resized = n_skipped = n_kept = 0
+    n_resized = n_skipped = n_kept = n_renamed = 0
+    existing = set(os.listdir(args.dir))
 
     for name in names:
         path = os.path.join(args.dir, name)
         before = os.path.getsize(path)
+
+        # 拡張子を小文字にそろえる（16-1.JPG → 16-1.jpg）
+        rename_note = ""
+        new_name = lower_ext(name)
+        if new_name != name:
+            if new_name in existing:
+                rename_note = f"／{new_name} が既にあるため改名せず"
+            else:
+                rename_note = f"／{new_name} に改名"
+                n_renamed += 1
+                if args.apply:
+                    if args.backup:
+                        shutil.copy2(path, os.path.join(args.backup, name))
+                    new_path = os.path.join(args.dir, new_name)
+                    os.rename(path, new_path)
+                    path = new_path
         before_total += before
 
         try:
             img = Image.open(path)
         except Exception as e:
-            print(f"{name:<13}{'—':>12}{'—':>10}   {'—':>12}{'—':>10}   読み込み失敗: {e}")
+            print(f"{name:<13}{'—':>12}{'—':>10}   {'—':>12}{'—':>10}   読み込み失敗: {e}{rename_note}")
             after_total += before
             continue
 
@@ -110,7 +134,7 @@ def main():
         # すでに十分小さいものには触れない
         if before <= args.budget * 1024:
             print(f"{name:<13}{f'{w}x{h}':>12}{human(before):>10}   {'—':>12}{'—':>10}   "
-                  f"対象外（{human(before)}は基準内）")
+                  f"対象外（{human(before)}は基準内）{rename_note}")
             after_total += before
             n_skipped += 1
             continue
@@ -133,7 +157,7 @@ def main():
         if after >= before or (same_size and pct < args.min_saving):
             reason = "縮まないため" if after >= before else f"削減{pct:.1f}%のため"
             print(f"{name:<13}{f'{w}x{h}':>12}{human(before):>10}   "
-                  f"{f'{nw}x{nh}':>12}{human(after):>10}   {reason}据え置き")
+                  f"{f'{nw}x{nh}':>12}{human(after):>10}   {reason}据え置き{rename_note}")
             after_total += before
             n_kept += 1
             continue
@@ -141,6 +165,7 @@ def main():
         note = f"{pct:.0f}% 削減"
         if same_size:
             note += "（寸法は変更なし）"
+        note += rename_note
         print(f"{name:<13}{f'{w}x{h}':>12}{human(before):>10}   "
               f"{f'{nw}x{nh}':>12}{human(after):>10}   {note}")
 
@@ -148,7 +173,7 @@ def main():
         n_resized += 1
 
         if args.apply:
-            if args.backup:
+            if args.backup and new_name == name:
                 shutil.copy2(path, os.path.join(args.backup, name))
             with open(path, 'wb') as f:
                 f.write(data)
@@ -156,6 +181,8 @@ def main():
     print("─" * 88)
     print()
     print(f"縮小 {n_resized}枚 / 対象外 {n_skipped}枚 / 据え置き {n_kept}枚")
+    if n_renamed:
+        print(f"拡張子を小文字に改名 {n_renamed}枚" + ("" if args.apply else "（--apply で実行）"))
     if before_total:
         pct = 100 - after_total * 100 / before_total
         print(f"合計 {human(before_total)} → {human(after_total)} （{pct:.0f}% 削減）")
