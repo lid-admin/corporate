@@ -13,6 +13,8 @@ hero.jpg・ロゴ・ファビコン・メンバー写真などは対象外。
 - **縦横比は変えない。** 長辺が上限を超える場合だけ、比率を保って縮める。
 - **拡大しない。** 上限より小さい画像はそのままの寸法で扱う。
 - **元より大きくなる場合は書き換えない。** 画質を落として容量が増えるのを避ける。
+- **処理済みの画像は再圧縮しない。** 寸法が変わらず削減もわずかなら据え置く。
+  JPEG は保存し直すたびに数十バイト縮むが、そのたびに画質も落ちるため。
 - **確認が既定。** --apply を付けない限りファイルには触れない。
 
 必要なもの: Python 3 と Pillow（`python3 -m pip install Pillow`）。
@@ -59,6 +61,8 @@ def main():
                    help='JPEG品質 1-100。既定 82')
     p.add_argument('--budget', type=int, default=250, metavar='KB',
                    help='これ以下のファイルには手を付けない。既定 250')
+    p.add_argument('--min-saving', type=int, default=5, metavar='PCT',
+                   help='寸法が変わらない場合、これ未満の削減なら書き換えない。既定 5（%%）')
     p.add_argument('--dir', default='images', metavar='PATH',
                    help='対象ディレクトリ。既定 images')
     p.add_argument('--backup', metavar='PATH',
@@ -121,17 +125,21 @@ def main():
         data = encode(img, args.quality)
         after = len(data)
 
-        # 小さくならないなら書き換えない
-        if after >= before:
+        pct = 100 - after * 100 / before
+        same_size = (w, h) == (nw, nh)
+
+        # 小さくならない、または寸法が同じで削減がわずかなら書き換えない
+        # （処理済みの画像を保存し直しても数十バイトしか縮まず、画質だけ落ちる）
+        if after >= before or (same_size and pct < args.min_saving):
+            reason = "縮まないため" if after >= before else f"削減{pct:.1f}%のため"
             print(f"{name:<13}{f'{w}x{h}':>12}{human(before):>10}   "
-                  f"{f'{nw}x{nh}':>12}{human(after):>10}   縮まないため据え置き")
+                  f"{f'{nw}x{nh}':>12}{human(after):>10}   {reason}据え置き")
             after_total += before
             n_kept += 1
             continue
 
-        pct = 100 - after * 100 // before
-        note = f"{pct}% 削減"
-        if (w, h) == (nw, nh):
+        note = f"{pct:.0f}% 削減"
+        if same_size:
             note += "（寸法は変更なし）"
         print(f"{name:<13}{f'{w}x{h}':>12}{human(before):>10}   "
               f"{f'{nw}x{nh}':>12}{human(after):>10}   {note}")
@@ -154,8 +162,8 @@ def main():
 
     if n_kept:
         print()
-        print("「据え置き」は縮小しても元より小さくならなかったものです。")
-        print("元がすでに強く圧縮されている場合に起きます。")
+        print("「据え置き」は縮小してもほとんど小さくならなかったものです。")
+        print("処理済みの画像や、元がすでに強く圧縮されている場合に起きます。")
 
     if not args.apply and n_resized:
         print()
