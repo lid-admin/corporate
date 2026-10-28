@@ -135,6 +135,18 @@
       height: 400px;
     }
 
+    .article-instagram {
+      margin-top: var(--s-7);
+      display: flex;
+      justify-content: center;
+    }
+
+    .article-instagram .instagram-media {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 !important;
+    }
+
     .article-image-btn {
       display: block;
       width: 100%;
@@ -342,6 +354,7 @@
     <div id="article-author" class="article-author"></div>
     <div id="article-body" class="article-body"></div>
     <div id="article-images" class="article-images" style="display:none;"></div>
+    <div id="article-instagram" class="article-instagram" style="display:none;"></div>
   </article>
 
   <nav id="article-nav" class="article-nav" style="display:none;" aria-label="前後の記事"></nav>
@@ -515,6 +528,17 @@
           });
         }
 
+        // Instagram 埋め込み。投稿/リール URL のみ受け付け、それ以外は無視する
+        const igUrl = toInstagramPermalink(report.instagram);
+        if (igUrl) {
+          const igEl = document.getElementById('article-instagram');
+          igEl.innerHTML = `<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="${LID.escapeHtml(igUrl)}" data-instgrm-version="14">
+              <a href="${LID.escapeHtml(igUrl)}" target="_blank" rel="noopener">Instagramでこの投稿を見る</a>
+            </blockquote>`;
+          igEl.style.display = 'flex';
+          loadInstagramEmbed();
+        }
+
         document.getElementById('article').style.display = 'block';
         renderNav(sorted, id);
 
@@ -523,6 +547,22 @@
         document.getElementById('error').style.display = 'block';
         console.error(e);
       }
+    }
+
+    // https://www.instagram.com/p/XXXX/ や /reel/XXXX/ を正規化した URL を返す。不正なら null
+    function toInstagramPermalink(url) {
+      if (typeof url !== 'string') return null;
+      const m = url.trim().match(/^https?:\/\/(?:www\.)?instagram\.com\/(?:[\w.]+\/)?(p|reel|tv)\/([\w-]+)/);
+      return m ? `https://www.instagram.com/${m[1]}/${m[2]}/` : null;
+    }
+
+    // embed.js は埋め込みがある記事だけで読み込む
+    function loadInstagramEmbed() {
+      if (window.instgrm) { window.instgrm.Embeds.process(); return; }
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.instagram.com/embed.js';
+      document.body.appendChild(s);
     }
 
     // ─── ライトボックス（記事内画像の拡大表示） ───
