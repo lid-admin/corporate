@@ -561,6 +561,11 @@
       <button type="button" class="btn-add-image" onclick="addImageRow()">＋ 画像を追加</button>
     </div>
 
+    <div class="field">
+      <label>Instagram 投稿 URL<span class="hint">入力すると記事末尾に埋め込み表示</span></label>
+      <input type="text" id="f-instagram" placeholder="https://www.instagram.com/p/XXXXXXXXXXX/">
+    </div>
+
     <div class="btn-group">
       <button class="btn btn-secondary" onclick="newEntry()">クリア / 新規</button>
     </div>
@@ -670,6 +675,7 @@
     document.getElementById('f-summary').value = e.summary ?? '';
     document.getElementById('f-body').value    = e.body ?? '';
     document.getElementById('f-image').value   = e.image ?? '';
+    document.getElementById('f-instagram').value = e.instagram ?? '';
     updateImagePreview(e.image ?? '');
     // 記事内画像
     const list = document.getElementById('images-list');
@@ -712,6 +718,8 @@
       image:   document.getElementById('f-image').value.trim(),
       images:  getImagesFromForm(),
     };
+    const instagram = document.getElementById('f-instagram').value.trim();
+    if (instagram) obj.instagram = instagram;
     if (editingId !== null) {
       const idx = entries.findIndex(e => e.id === editingId);
       if (idx !== -1) entries[idx] = obj;
@@ -877,12 +885,20 @@
 
   loadTagOptions();
 
-  ['f-date', 'f-tag', 'f-author', 'f-title', 'f-summary', 'f-body', 'f-image'].forEach(id => {
+  ['f-date', 'f-tag', 'f-author', 'f-title', 'f-summary', 'f-body', 'f-image', 'f-instagram'].forEach(id => {
     const el = document.getElementById(id);
     el.addEventListener('input', autoSave);
     el.addEventListener('change', autoSave);
   });
   document.getElementById('images-list').addEventListener('input', autoSave);
+  // Instagram の「埋め込み」コードを丸ごと貼られた場合は投稿 URL だけ取り出す
+  document.getElementById('f-instagram').addEventListener('input', function () {
+    const m = this.value.match(/https?:\/\/(?:www\.)?instagram\.com\/(?:[\w.]+\/)?(p|reel|tv)\/([\w-]+)/);
+    if (m && this.value.trim() !== m[0]) {
+      this.value = `https://www.instagram.com/${m[1]}/${m[2]}/`;
+      autoSave();
+    }
+  });
 </script>
 
 </body>
