@@ -6,19 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>document.documentElement.dataset.js = '1';</script>
   <title>企業情報 | Local Impact Design飯南株式会社</title>
-  <meta name="description" content="Local Impact Design飯南株式会社の理念と働き方。「地方創生2.0」を実装する実行部隊として、午前は地域活動・午後はIT学習というハイブリッドな働き方に取り組んでいます。">
+  <meta name="description" content="Local Impact Design飯南株式会社の理念と働き方。飯南町で「IT」×「地域おこし協力隊」をテーマに、地域活動とIT・デジタル業務を組み合わせたハイブリッドな働き方に取り組んでいます。">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://lid-iinan.com/about.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="企業情報 | Local Impact Design飯南株式会社">
-  <meta property="og:description" content="「地方創生2.0」を実装する実行部隊。午前は地域活動、午後はIT学習というハイブリッドな働き方に取り組んでいます。">
+  <meta property="og:description" content="飯南町で「IT」×「地域おこし協力隊」をテーマに活動する、新しい働き方のプロジェクトです。">
   <meta property="og:url" content="https://lid-iinan.com/about.html">
   <meta property="og:image" content="https://lid-iinan.com/images/hero.jpg">
   <meta property="og:site_name" content="Local Impact Design飯南株式会社">
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="企業情報 | Local Impact Design飯南株式会社">
-  <meta name="twitter:description" content="「地方創生2.0」を実装する実行部隊。午前は地域活動、午後はIT学習というハイブリッドな働き方に取り組んでいます。">
+  <meta name="twitter:description" content="飯南町で「IT」×「地域おこし協力隊」をテーマに活動する、新しい働き方のプロジェクトです。">
   <meta name="twitter:image" content="https://lid-iinan.com/images/hero.jpg">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
@@ -163,31 +163,28 @@
       margin: 0;
     }
 
-    /* 二部制のタイムライン。
-       順序に意味があるため <ol>。装飾の縦線は ::before で描き、
-       読み上げ対象にしない。時間帯は色だけでなく時刻テキストでも示す。 */
-    .timeline {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+    /* 地域活動 ＋ IT業務。2つを掛け合わせる関係なので、
+       順序のない2枚のカードを「＋」でつなぐ。「＋」は装飾なので読み上げない。
+       分野は色だけでなくラベルのテキストでも示す。 */
+    .work-mix {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--s-5);
-      position: relative;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: var(--s-4);
+      align-items: stretch;
     }
 
-    .timeline-item {
+    .work-item {
       position: relative;
       background: var(--moss-soft);
       border-radius: var(--r-card);
       padding: var(--s-6) var(--s-5);
     }
 
-    .timeline-item.pm {
+    .work-item.digital {
       background: var(--kaki-soft);
     }
 
-    .timeline-item::before {
+    .work-item::before {
       content: "";
       position: absolute;
       left: var(--s-5);
@@ -198,11 +195,22 @@
       border-radius: 0 0 2px 2px;
     }
 
-    .timeline-item.pm::before {
+    .work-item.digital::before {
       background: var(--kaki-dark);
     }
 
-    .timeline-time {
+    .work-illust {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: contain;
+      margin-bottom: var(--s-4);
+      border-radius: var(--r-icon);
+      background: var(--surface);
+    }
+
+    .work-label {
       display: inline-flex;
       align-items: center;
       gap: var(--s-2);
@@ -213,26 +221,123 @@
       margin-bottom: var(--s-3);
     }
 
-    .timeline-item.pm .timeline-time {
+    .work-item.digital .work-label {
       color: var(--kaki-dark);
     }
 
-    .timeline-item h3 {
+    .work-item h3 {
       font-size: var(--t-lg);
       margin: 0 0 var(--s-3);
     }
 
-    .timeline-item p {
+    .work-item p {
       font-size: 14px;
       line-height: 1.95;
       color: var(--ink-muted);
       margin: 0;
     }
 
+    .work-plus {
+      align-self: center;
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--moss);
+    }
+
     @media (max-width: 767px) {
-      .timeline {
+      .work-mix {
         grid-template-columns: 1fr;
       }
+
+      .work-plus {
+        justify-self: center;
+      }
+    }
+
+    /* 実績報告。活動レポートの写真を使い、該当レポートへリンクする。
+       中身は下の <script> が reports.json から差し替える */
+    .activity-grid {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--s-5) var(--s-4);
+    }
+
+    .activity-grid a {
+      display: block;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .activity-grid img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: var(--r-icon);
+      background: var(--moss-soft);
+      transition: transform 0.2s ease;
+    }
+
+    .activity-grid a:hover img {
+      transform: translateY(-2px);
+    }
+
+    .activity-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--s-2);
+      margin-top: var(--s-3);
+      font-size: var(--t-xs);
+      color: var(--ink-subtle);
+    }
+
+    .activity-title {
+      display: block;
+      margin-top: var(--s-2);
+      font-size: var(--t-sm);
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1023px) {
+      .activity-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 599px) {
+      .activity-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .activity-more {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--s-2);
+      margin-top: var(--s-6);
+    }
+
+    .activity-more-label {
+      font-size: var(--t-sm);
+      font-weight: 700;
+      color: var(--ink-subtle);
+      margin-right: var(--s-2);
+    }
+
+    .activity-more ul {
+      display: contents;
+    }
+
+    .activity-more li {
+      list-style: none;
     }
   </style>
 </head>
@@ -280,8 +385,11 @@
     <div class="section-inner">
       <p class="section-label">WHO WE ARE</p>
       <h2 class="section-title">LID飯南とは</h2>
-      <p class="lead-statement">「地方創生2.0」を実装する実行部隊</p>
-      <p class="prose">Local Impact Design（LID）飯南は、2026年4月に設立された、持続可能な地域づくりと新しい移住のスタンダードを創るためのプロジェクト牽引企業です。</p>
+      <p class="lead-statement">飯南町で<span class="nobr">「IT」×「地域おこし協力隊」</span>を<br>テーマに活動する、新しい働き方のプロジェクト</p>
+      <div class="prose">
+        <p>Local Impact Design（LID）飯南は、2026年4月に設立された、持続可能な地域づくりと新しい移住のスタンダードを創るためのプロジェクト牽引企業です。</p>
+        <p>「地方創生2.0」を実装する実行部隊として、地域の活動とIT・デジタル業務を掛け合わせた働き方に取り組んでいます。</p>
+      </div>
     </div>
   </div>
 
@@ -358,43 +466,141 @@
       <p class="section-label">HOW WE WORK</p>
       <h2 class="section-title">働き方の仕組み</h2>
       <p class="prose" style="margin-bottom: var(--s-6);">
-        当社では、「午前は地域活動、午後はIT学習」といったようなハイブリッドな働き方を取り入れています。
+        地域活動とIT業務。様々な職種を組み合わせた働き方を取り入れています。
       </p>
 
-      <ol class="timeline">
-        <li class="timeline-item am">
-          <span class="timeline-time">
+      <div class="work-mix">
+        <section class="work-item local">
+          <img class="work-illust" src="images/about-work-local.jpg" alt="畑で土を耕す人と、収穫した野菜を箱に詰める人たちのイラスト"
+            width="788" height="552" loading="lazy">
+          <span class="work-label">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
               stroke-linecap="round" aria-hidden="true">
               <circle cx="12" cy="12" r="4" />
               <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4" />
             </svg>
-            午前（おおよそ 9:00〜12:00）
+            地域活動
           </span>
           <h3>地域の活動・現場業務</h3>
-          <p>地域の活動や現場業務に携わり、実践的な経験を積みながら地域産業を支えます。体を動かし、地域とのつながりを深める時間です。</p>
-        </li>
-        <li class="timeline-item pm">
-          <span class="timeline-time">
+          <p>地域のお仕事や現場業務に携わり、実践的な経験を積みながら地域産業を支えます。様々な人と関わり、地域との繋がりを深める時間です。</p>
+        </section>
+        <span class="work-plus" aria-hidden="true">+</span>
+        <section class="work-item digital">
+          <img class="work-illust" src="images/about-work-it.jpg" alt="パソコンの操作を教わる人や、オフィスでノートパソコンに向かう人たちのイラスト"
+            width="1000" height="559" loading="lazy">
+          <span class="work-label">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="2" y="4" width="20" height="13" rx="2" />
               <path d="M8 21h8M12 17v4" />
             </svg>
-            午後（おおよそ 13:00〜17:00）
+            IT・デジタル
           </span>
           <h3>ITスキルの学習・デジタル業務</h3>
           <p>ITスキルの学習やデジタル業務に取り組み、時代の変化に対応できる知識と技術を身につけます。将来の可能性を広げる時間です。</p>
-        </li>
-      </ol>
+        </section>
+      </div>
 
       <div class="prose" style="margin-top: var(--s-6);">
-        <p>これはあくまで一例で、現場担当者と面談を重ね各自の活動内容が決まります。</p>
+        <p>組み合わせ方は一人ひとり異なり、現場担当者と面談を重ね各自の活動内容が決まります。</p>
         <p>この取り組みは、地域で働きながら新たなスキルを習得できることが大きな特徴です。また、異なる分野を経験することで柔軟な発想力や問題解決能力が養われ、多様な働き方に対応できる人材の育成にもつながります。</p>
         <p>地域の仕事とデジタル人材育成を両立させる新しい挑戦として、一人ひとりの成長と地域活性化の実現を目指しています。</p>
       </div>
     </div>
   </div>
+
+  <!-- ─── 実績報告 ─── -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-inner">
+      <p class="section-label">ACTIVITIES</p>
+      <h2 class="section-title">地域活動×IT・デジタル業務の実績報告</h2>
+      <p class="prose" style="margin-bottom: var(--s-6);">
+        農作業から地域行事、IT講習会まで。各分野の最新の活動をご紹介します。写真から各活動のレポートをご覧いただけます。
+      </p>
+
+      <!-- 読み込みに失敗したときはこの静的な一覧がそのまま残る -->
+      <ul class="activity-grid" id="activity-list">
+        <li><a href="pages/report.html?id=6"><img src="images/6-1.jpeg" alt="" width="400" height="300" loading="lazy"><span class="activity-title">IT講習会</span></a></li>
+        <li><a href="pages/report.html?id=10"><img src="images/10-1.jpg" alt="" width="400" height="300" loading="lazy"><span class="activity-title">ドローン散布</span></a></li>
+        <li><a href="pages/report.html?id=8"><img src="images/8-1.jpg" alt="" width="400" height="300" loading="lazy"><span class="activity-title">ボタン祭り運営手伝い</span></a></li>
+        <li><a href="pages/report.html?id=7"><img src="images/7-1.jpg" alt="" width="400" height="300" loading="lazy"><span class="activity-title">森林セラピー視察</span></a></li>
+        <li><a href="pages/report.html?id=9"><img src="images/9-1.jpg" alt="" width="400" height="300" loading="lazy"><span class="activity-title">ニンニクの収穫</span></a></li>
+        <li><a href="pages/report.html?id=19"><img src="images/19-1.jpg" alt="" width="400" height="300" loading="lazy"><span class="activity-title">稲刈り作業</span></a></li>
+        <li><a href="pages/report.html?id=1"><img src="images/1-1.jpg" alt="" width="400" height="300" loading="lazy"><span class="activity-title">上智大学生との交流会</span></a></li>
+        <li><a href="pages/report.html?id=3"><img src="images/3-1.jpg" alt="" width="400" height="300" loading="lazy"><span class="activity-title">病児病後児保育</span></a></li>
+      </ul>
+
+      <div class="activity-more">
+        <span class="activity-more-label">そのほかの活動</span>
+        <ul>
+          <li><span class="tag">機械操作の説明</span></li>
+          <li><span class="tag">土を耕して畝づくり</span></li>
+          <li><span class="tag">苗の植え付け作業</span></li>
+          <li><span class="tag">飯南高校イベント参加</span></li>
+          <li><span class="tag tag-kaki">HP制作</span></li>
+        </ul>
+      </div>
+
+      <p style="margin-top: var(--s-6);">
+        <a class="btn-outline" href="reports.html">活動レポートをもっと見る</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // 実績報告を reports.json の最新情報から組み立てる。
+    // 事業分野（tags.json の areas）ごとに新しい順で1件ずつ取り出すのを繰り返し、
+    // 各分野が必ず1件以上並ぶようにする。分野→タグの対応表は tags.json が単一の情報源。
+    // assets/site.js（defer）の実行後に走らせるため DOMContentLoaded を待つ
+    document.addEventListener('DOMContentLoaded', () => {
+    (async function () {
+      const MAX = 8;
+      const listEl = document.getElementById('activity-list');
+      if (!listEl) return;
+
+      try {
+        const [reports, cfg] = await Promise.all([
+          LID.fetchJSON('data/reports.json'),
+          LID.loadTags()
+        ]);
+        if (!Array.isArray(reports)) return;
+
+        const sorted = LID.sortByDateDesc(reports.filter(r => r && r.id != null && r.title && r.image));
+        const areas = (cfg.areas || []).map(area => ({
+          name: area,
+          queue: sorted.filter(r => LID.tagsOfArea(cfg, area).indexOf(r.tag) !== -1)
+        }));
+
+        // 分野を順に回り、各分野の新しいものから1件ずつ取る
+        const picked = [];
+        while (picked.length < MAX && areas.some(a => a.queue.length)) {
+          areas.forEach(a => {
+            if (picked.length < MAX && a.queue.length) picked.push({ report: a.queue.shift(), area: a.name });
+          });
+        }
+        // 分野のレポートが足りなければ、どの分野にも属さないものを新しい順に足す
+        sorted.forEach(r => {
+          if (picked.length < MAX && !picked.some(p => p.report === r)) picked.push({ report: r, area: r.tag });
+        });
+        if (!picked.length) return;   // 0件なら静的な一覧を残す
+
+        const placeholder = LID.root() + 'images/placeholder.svg';
+        listEl.innerHTML = LID.sortByDateDesc(picked.map(p => p.report)).map(r => {
+          const area = picked.find(p => p.report === r).area;
+          return `<li><a href="${LID.root()}pages/report.html?id=${encodeURIComponent(r.id)}">
+            <img src="${LID.escapeHtml(LID.root() + r.image)}" alt="" loading="lazy"
+              onerror="this.onerror=null;this.src='${placeholder}'">
+            <span class="activity-meta"><span class="tag">${LID.escapeHtml(area)}</span>${LID.formatDate(r.date, 'dot')}</span>
+            <span class="activity-title">${LID.escapeHtml(r.title)}</span>
+          </a></li>`;
+        }).join('');
+      } catch (err) {
+        console.error(err);
+        // 静的な一覧がそのまま残るので、ページは読める
+      }
+    })();
+    });
+  </script>
 
   <!-- ─── 末尾の導線 ─── -->
   <div class="section" style="padding-top:0;">
@@ -402,6 +608,7 @@
       <div class="contact-cta">
         <div>
           <h2>この働き方に関心をお持ちの方へ</h2>
+          <p>地域に寄り添い、デジタル人材育成と地域活性化の実現を目指して、一歩一歩進んで参ります。お気軽にお声がけ、ご相談ください！</p>
           <p>募集情報をご覧いただくか、お気軽にお問い合わせください。</p>
           <p style="margin-top:12px;">
             <a class="contact-tel-link" href="tel:0854623122">0854-62-3122</a><br>
@@ -421,7 +628,7 @@
       <div>
         <p class="footer-name">Local Impact Design 飯南株式会社</p>
         <address>
-          〒690-3513 島根県飯石郡飯南町下赤名830番地<br>
+          〒690-3513 島根県飯石郡飯南町下赤名832番地<br>
           TEL <a href="tel:0854623122">0854-62-3122</a>（平日 9:00〜17:00）
         </address>
       </div>
