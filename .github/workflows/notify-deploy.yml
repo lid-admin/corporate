@@ -1,0 +1,43 @@
+# GitHub Pages のデプロイが終わったら Google Chat に通知する。
+# Pages は設定画面の「Deploy from a branch」で公開しており、デプロイは GitHub が自動で用意する
+# pages-build-deployment ワークフローが行う。その完了を workflow_run で受け取る。
+# Webhook URL にはキーとトークンが含まれるため、リポジトリのシークレット GOOGLE_CHAT_WEBHOOK_URL に置く。
+name: デプロイ通知
+
+on:
+  workflow_run:
+    workflows: [pages-build-deployment]
+    types: [completed]
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    # 取り消されたデプロイ（後続のプッシュで置き換えられたものなど）は通知しない
+    if: github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure'
+    steps:
+      - name: Google Chat に送信
+        env:
+          WEBHOOK_URL: ${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}
+          CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          COMMIT_MESSAGE: ${{ github.event.workflow_run.head_commit.message }}
+          COMMIT_AUTHOR: ${{ github.event.workflow_run.head_commit.author.name }}
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+          SITE_URL: https://lid-iinan.com/
+        run: |
+          if [ "$CONCLUSION" = "success" ]; then
+            head="✅ サイトのデプロイが完了しました"
+            link="$SITE_URL"
+          else
+            head="❌ サイトのデプロイに失敗しました"
+            link="$RUN_URL"
+          fi
+          # コミットメッセージは1行目（マージコミットならPRの番号）だけ載せる
+          subject=$(printf '%s' "$COMMIT_MESSAGE" | head -n 1)
+          text=$(printf '%s\n%s（%s, %s）\n%s' "$head" "$subject" "$COMMIT_AUTHOR" "${COMMIT_SHA:0:7}" "$link")
+          # 引用符や改行を含んでも壊れないよう、JSON は jq で組み立てる
+          jq -n --arg text "$text" '{text: $text}' \
+            | curl -fsS -X POST -H 'Content-Type: application/json; charset=UTF-8' --data @- "$WEBHOOK_URL"
