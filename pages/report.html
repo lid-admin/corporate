@@ -194,13 +194,61 @@
       line-height: 1.6;
     }
 
-    .status-msg,
     .error-msg {
       max-width: 760px;
       margin: var(--s-8) auto;
       padding: 0 var(--pad-x);
       text-align: center;
       color: var(--ink-subtle);
+    }
+
+    /* 読み込み中のスケルトン。寸法は記事本体（.article-hero / .article-title など）に合わせる */
+    .sk {
+      border-radius: var(--r-icon);
+      background: linear-gradient(90deg, var(--moss-soft) 25%, var(--surface) 50%, var(--moss-soft) 75%);
+      background-size: 200% 100%;
+      animation: sk-shimmer 1.4s ease-in-out infinite;
+    }
+
+    @keyframes sk-shimmer {
+      from {
+        background-position: 100% 0;
+      }
+
+      to {
+        background-position: -100% 0;
+      }
+    }
+
+    .sk-hero {
+      height: 420px;
+      border-radius: var(--r-hero);
+    }
+
+    .sk-meta {
+      width: 10em;
+      height: 22px;
+      margin-bottom: var(--s-4);
+    }
+
+    .sk-title {
+      height: clamp(24px, 3.4vw, 34px);
+      margin-bottom: var(--s-3);
+    }
+
+    .sk-author {
+      width: 8em;
+      height: var(--t-sm);
+      margin: var(--s-4) 0 var(--s-6);
+    }
+
+    .sk-line {
+      height: 16px;
+      margin-bottom: 16px;
+    }
+
+    .sk.is-short {
+      width: 60%;
     }
 
     /* ライトボックス */
@@ -288,7 +336,8 @@
     }
 
     @media (max-width: 767px) {
-      .article-hero img {
+      .article-hero img,
+      .sk-hero {
         height: 240px;
       }
 
@@ -343,7 +392,26 @@
     <img id="hero-img" src="" alt="">
   </div>
 
-  <div id="status" class="status-msg">読み込み中…</div>
+  <!-- 読み込み中の仮表示。記事と同じ寸法で場所を取り、フッターがせり上がらないようにする -->
+  <div id="status" class="report-skeleton">
+    <span class="visually-hidden" role="status">読み込み中…</span>
+    <div class="article-hero" aria-hidden="true">
+      <div class="sk sk-hero"></div>
+    </div>
+    <div class="article-wrap" aria-hidden="true">
+      <div class="sk sk-meta"></div>
+      <div class="sk sk-title"></div>
+      <div class="sk sk-title is-short"></div>
+      <div class="sk sk-author"></div>
+      <div class="sk sk-line"></div>
+      <div class="sk sk-line"></div>
+      <div class="sk sk-line"></div>
+      <div class="sk sk-line is-short"></div>
+      <div class="sk sk-line"></div>
+      <div class="sk sk-line"></div>
+      <div class="sk sk-line is-short"></div>
+    </div>
+  </div>
 
   <article id="article" class="article-wrap" style="display:none;">
     <div class="article-meta">
