@@ -329,6 +329,42 @@
       }
     }
 
+    /* ページ送りで先頭に戻したとき、見出しが固定ヘッダーに隠れないようにする */
+    #news {
+      scroll-margin-top: var(--header-h);
+    }
+
+    /* ニュースのページ送り */
+    .news-pager {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--s-2);
+      margin-top: var(--s-5);
+    }
+
+    .news-pager .btn-pill {
+      min-width: 40px;
+      padding: var(--s-2) var(--s-3);
+    }
+
+    .news-pager .btn-pill[aria-current="page"] {
+      border-color: var(--moss);
+      background: var(--moss);
+      color: var(--surface);
+      cursor: default;
+    }
+
+    .news-pager .btn-pill:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .news-pager .btn-pill:disabled:hover {
+      border-color: var(--line);
+      color: var(--ink-muted);
+    }
+
     /* 募集情報の要約 */
     .recruit-brief {
       background: var(--moss);
@@ -490,6 +526,7 @@
       <div id="news-list" class="news-list">
         <p class="is-loading">読み込み中...</p>
       </div>
+      <nav class="news-pager" id="news-pager" aria-label="ニュースのページ" hidden></nav>
     </div>
   </div>
 
@@ -605,46 +642,92 @@
       }
     }
 
+    // ニュース1ページあたりの件数
+    const NEWS_PER_PAGE = 5;
+
     async function loadNews() {
       const list = document.getElementById('news-list');
+      const pager = document.getElementById('news-pager');
       try {
         const news = await LID.fetchJSON('data/news.json');
         if (!Array.isArray(news)) throw new Error('news.json が配列ではありません');
 
         const sorted = LID.sortByDateDesc(news.filter(n => n && n.title));
-        list.innerHTML = sorted.map(n => {
-          const date = LID.formatDate(n.date, 'dot');
-          const title = LID.escapeHtml(n.title);
-          const url = (n.url || '').trim();
+        const pageCount = Math.max(1, Math.ceil(sorted.length / NEWS_PER_PAGE));
 
-          // 飛び先の無いお知らせ（「〇〇に出展します」など）はリンクにしない
-          if (!url || url === '#') {
-            return `<div class="news-item is-static">
-              <span class="news-date">${date}</span>
-              <span class="news-title">${title}</span>
-            </div>`;
+        const showPage = (page, scroll) => {
+          const start = (page - 1) * NEWS_PER_PAGE;
+          list.innerHTML = sorted.slice(start, start + NEWS_PER_PAGE).map(renderNewsItem).join('');
+          renderPager(page);
+          // ページ送りでリストの先頭が画面外に出ていたら戻す
+          if (scroll && list.getBoundingClientRect().top < 0) {
+            document.getElementById('news').scrollIntoView({ behavior: 'smooth' });
           }
+        };
 
-          // 外部サイトは別タブで開き、外部であることをアイコンで示す
-          const external = /^https?:\/\//.test(url);
-          const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
-          const icon = external
-            ? ` <svg class="news-external" width="11" height="11" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true"><path d="M14 4h6v6M20 4L10 14M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>`
-              + '<span class="visually-hidden">（別サイトが新しいタブで開きます）</span>'
-            : '';
+        const renderPager = (page) => {
+          if (pageCount <= 1) {
+            pager.hidden = true;
+            return;
+          }
+          const btn = (label, target, opts = {}) =>
+            `<button type="button" class="btn-pill" data-page="${target}"`
+            + (opts.current ? ' aria-current="page"' : '')
+            + (opts.disabled ? ' disabled' : '')
+            + (opts.ariaLabel ? ` aria-label="${opts.ariaLabel}"` : '')
+            + `>${label}</button>`;
 
-          // /pages/... のようなサイト内パスは、配信位置に合わせて読み替える
-          return `<a class="news-item" href="${LID.escapeHtml(LID.siteUrl(url))}"${attrs}>
-            <span class="news-date">${date}</span>
-            <span class="news-title">${title}${icon}</span>
-          </a>`;
-        }).join('');
+          let html = btn('前へ', page - 1, { disabled: page === 1, ariaLabel: '前のページ' });
+          for (let p = 1; p <= pageCount; p++) {
+            html += btn(p, p, { current: p === page, ariaLabel: `${p}ページ目` });
+          }
+          html += btn('次へ', page + 1, { disabled: page === pageCount, ariaLabel: '次のページ' });
+          pager.innerHTML = html;
+          pager.hidden = false;
+        };
+
+        pager.addEventListener('click', (e) => {
+          const b = e.target.closest('button[data-page]');
+          if (!b || b.disabled || b.getAttribute('aria-current')) return;
+          showPage(Number(b.dataset.page), true);
+        });
+
+        showPage(1, false);
       } catch (err) {
         console.error(err);
+        pager.hidden = true;
         LID.renderNotice(list, 'ニュースを読み込めませんでした。', true);
       }
+    }
+
+    function renderNewsItem(n) {
+      const date = LID.formatDate(n.date, 'dot');
+      const title = LID.escapeHtml(n.title);
+      const url = (n.url || '').trim();
+
+      // 飛び先の無いお知らせ（「〇〇に出展します」など）はリンクにしない
+      if (!url || url === '#') {
+        return `<div class="news-item is-static">
+          <span class="news-date">${date}</span>
+          <span class="news-title">${title}</span>
+        </div>`;
+      }
+
+      // 外部サイトは別タブで開き、外部であることをアイコンで示す
+      const external = /^https?:\/\//.test(url);
+      const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+      const icon = external
+        ? ` <svg class="news-external" width="11" height="11" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true"><path d="M14 4h6v6M20 4L10 14M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>`
+          + '<span class="visually-hidden">（別サイトが新しいタブで開きます）</span>'
+        : '';
+
+      // /pages/... のようなサイト内パスは、配信位置に合わせて読み替える
+      return `<a class="news-item" href="${LID.escapeHtml(LID.siteUrl(url))}"${attrs}>
+        <span class="news-date">${date}</span>
+        <span class="news-title">${title}${icon}</span>
+      </a>`;
     }
 
     // assets/site.js は defer で読み込むため、解析中に走るこのスクリプトより後に実行される。
