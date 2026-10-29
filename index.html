@@ -312,6 +312,26 @@
       opacity: 1;
     }
 
+    /* 直近の未読ニュース。右上のバッジと重ならないよう右側を空ける */
+    .news-item.is-new {
+      position: relative;
+      padding-right: 4.5em;
+    }
+
+    .news-new {
+      position: absolute;
+      top: var(--s-4);
+      right: 0;
+      padding: 2px var(--s-2);
+      border-radius: var(--r-pill);
+      background: var(--kaki);
+      color: var(--surface);
+      font-size: var(--t-xs);
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 0.04em;
+    }
+
     .news-date {
       font-size: var(--t-sm);
       color: var(--ink-subtle);
@@ -686,6 +706,12 @@
           pager.hidden = false;
         };
 
+        // 開いたニュースは既読にする。NEW が目の前で消えないよう表示はそのままにし、次回の表示から外す
+        list.addEventListener('click', (e) => {
+          const item = e.target.closest('.news-item.is-new');
+          if (item) markNewsSeen(item.dataset.newsKey);
+        });
+
         pager.addEventListener('click', (e) => {
           const b = e.target.closest('button[data-page]');
           if (!b || b.disabled || b.getAttribute('aria-current')) return;
@@ -700,16 +726,64 @@
       }
     }
 
+    // 投稿日からこの日数以内のニュースに NEW を付ける
+    const NEWS_NEW_DAYS = 7;
+    // 既読にしたニュースのキー。閲覧者のブラウザにだけ保存される
+    const NEWS_SEEN_KEY = 'lid:news-seen';
+
+    // news.json には id が無いため、日付とタイトルで1件を識別する
+    const newsKey = (n) => `${n.date}|${n.title}`;
+
+    function loadSeenNews() {
+      try {
+        const seen = JSON.parse(localStorage.getItem(NEWS_SEEN_KEY) || '[]');
+        return new Set(Array.isArray(seen) ? seen : []);
+      } catch (err) {
+        return new Set();
+      }
+    }
+
+    // ページを開いた時点の既読状態。表示中に既読にしても再描画で NEW が消えないよう固定する
+    const seenAtLoad = loadSeenNews();
+
+    function markNewsSeen(key) {
+      const seen = loadSeenNews();
+      if (seen.has(key)) return;
+      seen.add(key);
+      try {
+        localStorage.setItem(NEWS_SEEN_KEY, JSON.stringify([...seen]));
+      } catch (err) {
+        // プライベートブラウズなどで保存できない場合は NEW が残るだけ
+      }
+    }
+
+    function isNewsNew(n) {
+      const [y, m, d] = String(n.date || '').split('-').map(Number);
+      if (!y || !m || !d) return false;
+      const limit = new Date();
+      limit.setHours(0, 0, 0, 0);
+      limit.setDate(limit.getDate() - NEWS_NEW_DAYS);
+      return new Date(y, m - 1, d) >= limit && !seenAtLoad.has(newsKey(n));
+    }
+
     function renderNewsItem(n) {
       const date = LID.formatDate(n.date, 'dot');
       const title = LID.escapeHtml(n.title);
       const url = (n.url || '').trim();
+      const key = newsKey(n);
+      const isNew = isNewsNew(n);
+      const newCls = isNew ? ' is-new' : '';
+      const newAttr = isNew ? ` data-news-key="${LID.escapeHtml(key)}"` : '';
+      const badge = isNew ? '<span class="news-new">NEW</span>' : '';
 
       // 飛び先の無いお知らせ（「〇〇に出展します」など）はリンクにしない
       if (!url || url === '#') {
-        return `<div class="news-item is-static">
+        // クリックで開くものが無いため、一度表示したら既読とし、次回から NEW を出さない
+        if (isNew) markNewsSeen(key);
+        return `<div class="news-item is-static${newCls}"${newAttr}>
           <span class="news-date">${date}</span>
           <span class="news-title">${title}</span>
+          ${badge}
         </div>`;
       }
 
@@ -724,9 +798,10 @@
         : '';
 
       // /pages/... のようなサイト内パスは、配信位置に合わせて読み替える
-      return `<a class="news-item" href="${LID.escapeHtml(LID.siteUrl(url))}"${attrs}>
+      return `<a class="news-item${newCls}" href="${LID.escapeHtml(LID.siteUrl(url))}"${attrs}${newAttr}>
         <span class="news-date">${date}</span>
         <span class="news-title">${title}${icon}</span>
+        ${badge}
       </a>`;
     }
 
